@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ghostopw | Gabriel Guimarães</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=Lora:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-sidebar: #0a0e13;
+    --bg-card: #161b22;
+    --bg-card-hover: #1c2129;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #484f58;
+    --accent: #58a6ff;
+    --accent-glow: rgba(88, 166, 255, 0.15);
+    --accent-secondary: #3fb950;
+    --accent-warn: #d29922;
+    --border: #21262d;
+    --border-light: #30363d;
+    --tag-bg: rgba(88, 166, 255, 0.1);
+    --shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    line-height: 1.7;
+  }
+
+  /* ─── SIDEBAR ─── */
+  .sidebar {
+    width: 280px;
+    min-height: 100vh;
+    background: var(--bg-sidebar);
+    border-right: 1px solid var(--border);
+    padding: 2.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    overflow-y: auto;
+  }
+
+  .avatar-ring {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    padding: 3px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    margin-bottom: 1.2rem;
+    animation: ringPulse 4s ease-in-out infinite;
+  }
+
+  @keyframes ringPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(88,166,255,0.3); }
+    50% { box-shadow: 0 0 20px 4px rgba(88,166,255,0.15); }
+  }
+
+  .avatar-ring img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--bg-sidebar);
+  }
+
+  .sidebar-name {
+    font-family: 'Lora', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+  }
+
+  .sidebar-handle {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+
+  .sidebar-tagline {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 1.8rem;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .sidebar-nav {
+    list-style: none;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .sidebar-nav li { margin-bottom: 0.15rem; }
+
+  .sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.6rem 1rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    border-radius: 8px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+
+  .sidebar-nav a:hover,
+  .sidebar-nav a.active {
+    color: var(--text-primary);
+    background: var(--accent-glow);
+  }
+
+  .sidebar-nav a .nav-icon {
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+  }
+
+  .sidebar-socials {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+    padding-top: 2rem;
+  }
+
+  .sidebar-socials a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-family: 'Source Code Pro', monospace;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .sidebar-socials a:hover { color: var(--accent); }
+
+  /* ─── MAIN CONTENT ─── */
+  .main-content {
+    margin-left: 280px;
+    flex: 1;
+    min-height: 100vh;
+  }
+
+  .content-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 2.5rem;
+  }
+
+  /* ─── SECTIONS ─── */
+  section {
+    margin-bottom: 4rem;
+    animation: fadeUp 0.6s ease-out both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  section:nth-child(2) { animation-delay: 0.1s; }
+  section:nth-child(3) { animation-delay: 0.2s; }
+  section:nth-child(4) { animation-delay: 0.3s; }
+  section:nth-child(5) { animation-delay: 0.4s; }
+
+  .section-title {
+    font-family: 'Lora', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .section-title::before {
+    content: '';
+    width: 4px;
+    height: 1.5rem;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  /* ─── HOME / HERO ─── */
+  .hero-intro {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    max-width: 720px;
+  }
+
+  .hero-intro strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .hero-tag {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.75rem;
+    padding: 0.35rem 0.8rem;
+    background: var(--tag-bg);
+    color: var(--accent);
+    border-radius: 20px;
+    border: 1px solid rgba(88,166,255,0.2);
+  }
+
+  /* ─── EXPERIENCE CARDS ─── */
+  .exp-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.6rem;
+    margin-bottom: 1rem;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .exp-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .exp-card:hover {
+    border-color: var(--border-light);
+    background: var(--bg-card-hover);
+    transform: translateX(4px);
+  }
+
+  .exp-card:hover::before { opacity: 1; }
+
+  .exp-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .exp-role {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+  }
+
+  .exp-company {
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .exp-date {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .exp-desc {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-top: 0.6rem;
+  }
+
+  /* ─── PROJECT CARDS ─── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .project-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.4rem;
+    transition: all 0.25s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(88,166,255,0.08);
+  }
+
+  .project-card-title {
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+  }
+
+  .project-card-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .project-card-title a:hover { color: var(--accent); }
+
+  .project-card-desc {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .project-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1rem;
+  }
+
+  .project-tag {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.68rem;
+    padding: 0.2rem 0.55rem;
+    background: rgba(63,185,80,0.1);
+    color: var(--accent-secondary);
+    border-radius: 4px;
+  }
+
+  .project-card .award {
+    background: rgba(210,153,34,0.12);
+    color: var(--accent-warn);
+  }
+
+  /* ─── CERTS ─── */
+  .certs-list { list-style: none; }
+
+  .certs-list li {
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  .certs-list li::before {
+    content: '✓';
+    color: var(--accent-secondary);
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+
+  .certs-list li:last-child { border-bottom: none; }
+
+  .cert-year {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  /* ─── EDUCATION ─── */
+  .edu-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .edu-item:last-child { border-bottom: none; }
+
+  .edu-school {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-primary);
+  }
+
+  .edu-degree {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+  }
+
+  .edu-period {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  /* ─── HOME TWO-COLUMN LAYOUT ─── */
+  .home-layout {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+    padding-right: 1rem;
+  }
+
+  .home-main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .home-sidebar {
+    width: 180px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 2rem;
+    margin-right: -1.5rem;
+  }
+
+  .home-sidebar-title {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  /* ─── RECENTLY UPDATED ─── */
+  .recent-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .recent-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .recent-item:last-child { border-bottom: none; }
+
+  .recent-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 0.4rem;
+    flex-shrink: 0;
+  }
+
+  .recent-title {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .recent-meta {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 0.1rem;
+  }
+
+  /* ─── SKILLS ─── */
+  .skills-group {
+    margin-bottom: 1.2rem;
+  }
+
+  .skills-group-title {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .skill-tag {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.75rem;
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+
+  .skill-tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+
+  footer a:hover { color: var(--accent); }
+
+  /* ─── MOBILE HAMBURGER ─── */
+  .mobile-header {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 56px;
+    background: var(--bg-sidebar);
+    border-bottom: 1px solid var(--border);
+    z-index: 200;
+    padding: 0 1rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mobile-header-title {
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .hamburger {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 99;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar.open { transform: translateX(0); }
+    .sidebar-overlay.open { display: block; }
+
+    .mobile-header { display: flex; }
+
+    .main-content {
+      margin-left: 0;
+      padding-top: 56px;
+    }
+
+    .content-wrapper { padding: 2rem 1.2rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── HIDDEN SECTIONS (JS toggle) ─── */
+  .page { display: none; }
+  .page.active { display: block; }
+</style>
+</head>
+<body>
+
+<!-- Mobile Header -->
+<div class="mobile-header">
+  <span class="mobile-header-title">ghostopw</span>
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+</div>
+<div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="avatar-ring">
+    <img src="profile.png" alt="Gabriel Guimarães" />
+  </div>
+  <div class="sidebar-name">Gabriel Guimarães</div>
+  <div class="sidebar-handle">@ghostopw</div>
+  <div class="sidebar-tagline">AI Engineer · Automation · LLMs · RAG<br>Security & Development</div>
+
+  <ul class="sidebar-nav">
+    <li><a href="#" class="active" data-page="home"><span class="nav-icon">⌂</span> Home</a></li>
+    <li><a href="#" data-page="about"><span class="nav-icon">◉</span> About</a></li>
+    <li><a href="#" data-page="projects"><span class="nav-icon">◈</span> Projects</a></li>
+    <li><a href="#" data-page="certs"><span class="nav-icon">◆</span> Certifications</a></li>
+    <li><a href="#" data-page="skills"><span class="nav-icon">◇</span> Skills</a></li>
+  </ul>
+
+  <div class="sidebar-socials">
+    <a href="https://github.com/ghostopw" target="_blank">⟨/⟩ GitHub</a>
+    <a href="https://www.linkedin.com/in/gabriel-guimaraes-a37b43268" target="_blank">in LinkedIn</a>
+  </div>
+</aside>
+
+<!-- Main Content -->
+<main class="main-content">
+  <div class="content-wrapper">
+
+    <!-- ═══ HOME ═══ -->
+    <div class="page active" id="page-home">
+      <div class="home-layout">
+      <div class="home-main">
+      <section>
+        <h2 class="section-title">Hi, I'm Gabriel</h2>
+        <div class="hero-intro">
+          Computer Engineering student at IESB and AI Engineer at
+          CIIA — Centro Integrado de Inteligência Artificial, building AI solutions for public security.
+          Hands-on experience with LLMs, RAG, process automation, and full-stack development.
+          Previously worked at Outlier AI as a programmer and language model trainer.
+          <br><br>
+          Author of a paper on the Minimax algorithm applied to board games, exploring its relationship
+          with modern AI techniques like AlphaZero. Driven by solving complex code and infrastructure problems.
+        </div>
+        <div class="hero-tags">
+          <span class="hero-tag">Python</span>
+          <span class="hero-tag">LLMs</span>
+          <span class="hero-tag">RAG</span>
+          <span class="hero-tag">MLOps</span>
+          <span class="hero-tag">Computer Vision</span>
+          <span class="hero-tag">Docker</span>
+          <span class="hero-tag">Flutter</span>
+          <span class="hero-tag">React</span>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Experience</h2>
+
+        <div class="exp-card">
+          <div class="exp-card-header">
+            <div>
+              <div class="exp-role">AI Solutions Developer — Public Security</div>
+              <div class="exp-company">CIIA — Centro Integrado de Inteligência Artificial</div>
+            </div>
+            <div class="exp-date">Jun 2025 — Present</div>
+          </div>
+          <div class="exp-desc">
+            Prototyping low-latency voice pipelines (ASR + TTS) for real-world environments.
+            Integration of Whisper, Sherpa-ONNX, and Piper TTS. Flutter app development for end-to-end demos.
+            Building LLM-powered chatbots and assistants with context retrieval and iterative responses.
+            Stack: Python, PyTorch, Flutter/Dart, React, Chainlit, Supabase, LangChain, Docker.
+          </div>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-card-header">
+            <div>
+              <div class="exp-role">AI Programmer & LLM Trainer</div>
+              <div class="exp-company">Outlier AI</div>
+            </div>
+            <div class="exp-date">Oct 2023 — Jun 2025</div>
+          </div>
+          <div class="exp-desc">
+            Development and training of AI language models.
+            Business process automation with AI system integration.
+            Data analysis with Python, SQL, and Power BI to generate dashboards and insights.
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Education</h2>
+        <div class="edu-item">
+          <div class="edu-school">IESB — Instituto de Educação Superior de Brasília</div>
+          <div class="edu-degree">B.Sc. in Computer Engineering</div>
+          <div class="edu-period">Jan 2025 — Jul 2027 (ongoing)</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-school">UniCEUB — Centro Universitário de Brasília</div>
+          <div class="edu-degree">B.Sc. in Computer Engineering</div>
+          <div class="edu-period">Jan 2023 — Dec 2024</div>
+        </div>
+      </section>
+
+      </div><!-- end home-main -->
+
+      <aside class="home-sidebar">
+        <div class="home-sidebar-title">Recently Updated</div>
+        <div class="recent-list">
+          <div class="recent-item">
+            <span class="recent-dot"></span>
+            <div class="recent-content">
+              <div class="recent-title">Joined CIIA as AI Engineer</div>
+              <div class="recent-meta">Jun 2025 · Work</div>
+            </div>
+          </div>
+          <div class="recent-item">
+            <span class="recent-dot"></span>
+            <div class="recent-content">
+              <div class="recent-title">Published paper on Minimax & AlphaZero</div>
+              <div class="recent-meta">2025 · Research</div>
+            </div>
+          </div>
+          <div class="recent-item">
+            <span class="recent-dot"></span>
+            <div class="recent-content">
+              <div class="recent-title">1st place — Big Data Hackathon</div>
+              <div class="recent-meta">2025 · Achievement</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      </div><!-- end home-layout -->
+    </div>
+
+    <!-- ═══ ABOUT ═══ -->
+    <div class="page" id="page-about">
+      <section>
+        <h2 class="section-title">About</h2>
+        <div class="hero-intro">
+          You can call me Gabriel. Online, I go by ghostopw.
+          <br><br>
+          I'm an AI Engineer and Computer Engineering student at IESB, based in Brasília, Brazil.
+          Currently I work at CIIA (Centro Integrado de Inteligência Artificial), where I build AI solutions
+          for public security — from voice pipelines with ASR and TTS to conversational assistants powered by LLMs.
+          <br><br>
+          Before that, I spent nearly two years at Outlier AI, training and evaluating language models,
+          automating business processes, and extracting insights with Python, SQL, and Power BI.
+          <br><br>
+
+          What drives me:<br>
+          I enjoy the full cycle. Understanding the problem, prototyping fast, iterating with real data, and shipping
+          something that works in production. I move comfortably between AI, web development, and infrastructure.
+          I work with Docker, Flutter, React, FastAPI, and whatever else the project demands.
+          <br><br>
+
+          On the academic side, I authored a paper on the Minimax algorithm applied to board games,
+          bridging classical heuristic search methods with modern approaches like AlphaZero. I also took
+          1st place at the Big Data Hackathon with an end-to-end predictive modeling solution.
+          <br><br>
+
+          Off the keyboard:<br>
+          I'm into PC building, gaming, barbecue, and experimenting with cocktail recipes. Born and raised in Brasília.
+          <br><br>
+
+          Contact: gabriel.guyma@gmail.com
+        </div>
+      </section>
+    </div>
+
+    <!-- ═══ PROJECTS ═══ -->
+    <div class="page" id="page-projects">
+      <section>
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+
+          <div class="project-card">
+            <div class="project-card-title">
+              <a href="https://github.com/ghostopw/ds_bigdata_hackathon" target="_blank">Hackathon Big Data</a>
+            </div>
+            <div class="project-card-desc">
+              End-to-end solution with a complete data pipeline and predictive modeling.
+              1st place winner at the Big Data Hackathon.
+            </div>
+            <div class="project-card-tags">
+              <span class="project-tag award">🏆 1st Place</span>
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Data Science</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card-title">
+              <a href="https://github.com/ghostopw/langchain-chat" target="_blank">LangChain Chat</a>
+            </div>
+            <div class="project-card-desc">
+              Chat application using FastAPI, LangChain, and the OpenAI API. Includes session-based memory,
+              tool calling, and a lightweight front-end interface.
+            </div>
+            <div class="project-card-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">FastAPI</span>
+              <span class="project-tag">LangChain</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card-title">
+              <a href="https://github.com/ghostopw/agente-rag-utilizando-pinecone" target="_blank">Agente RAG + Pinecone</a>
+            </div>
+            <div class="project-card-desc">
+              Intelligent agent with Retrieval-Augmented Generation using Pinecone
+              as the vector store for context retrieval.
+            </div>
+            <div class="project-card-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">RAG</span>
+              <span class="project-tag">Pinecone</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card-title">Chatbot Multimodal</div>
+            <div class="project-card-desc">
+              RAG-powered agent with a Node/Express backend and Next.js front-end.
+              Supports multiple input modalities.
+            </div>
+            <div class="project-card-tags">
+              <span class="project-tag">Node.js</span>
+              <span class="project-tag">Next.js</span>
+              <span class="project-tag">RAG</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card-title">NexusLearn</div>
+            <div class="project-card-desc">
+              Educational platform with dashboards and custom LLM integration
+              for adaptive learning experiences.
+            </div>
+            <div class="project-card-tags">
+              <span class="project-tag">React</span>
+              <span class="project-tag">LLMs</span>
+              <span class="project-tag">Educação</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card-title">
+              <a href="https://github.com/ghostopw/ghostopw.github.io" target="_blank">Portfolio</a>
+            </div>
+            <div class="project-card-desc">
+              Personal portfolio site hosted on GitHub Pages.
+            </div>
+            <div class="project-card-tags">
+              <span class="project-tag">HTML</span>
+              <span class="project-tag">CSS</span>
+              <span class="project-tag">GitHub Pages</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- ═══ CERTS ═══ -->
+    <div class="page" id="page-certs">
+      <section>
+        <h2 class="section-title">Certifications</h2>
+        <ul class="certs-list">
+          <li>Google AI Essentials <span class="cert-year">2025</span></li>
+          <li>CS50's Introduction to AI with Python — Harvard <span class="cert-year">2025</span></li>
+          <li>AI Fundamentals and Generative AI — Coursera/CIIA <span class="cert-year">2025</span></li>
+          <li>Crash Course on Python — Coursera <span class="cert-year">2025</span></li>
+          <li>Foundations of Data Science — Coursera <span class="cert-year">2025</span></li>
+          <li>Network Defense — Cisco <span class="cert-year">2025</span></li>
+          <li>AI Programming <span class="cert-year">2025</span></li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- ═══ SKILLS ═══ -->
+    <div class="page" id="page-skills">
+      <section>
+        <h2 class="section-title">Skills & Technologies</h2>
+
+        <div class="skills-group">
+          <div class="skills-group-title">IA & LLMs</div>
+          <div class="skills-tags">
+            <span class="skill-tag">Intelligent Agents</span>
+            <span class="skill-tag">Prompt Engineering</span>
+            <span class="skill-tag">RAG</span>
+            <span class="skill-tag">LangChain</span>
+            <span class="skill-tag">Machine Learning</span>
+            <span class="skill-tag">Deep Learning</span>
+            <span class="skill-tag">Computer Vision</span>
+            <span class="skill-tag">PyTorch</span>
+          </div>
+        </div>
+
+        <div class="skills-group">
+          <div class="skills-group-title">Development</div>
+          <div class="skills-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Node.js / Express</span>
+            <span class="skill-tag">React / Next.js</span>
+            <span class="skill-tag">Flutter / Dart</span>
+            <span class="skill-tag">HTML / CSS</span>
+            <span class="skill-tag">FastAPI</span>
+          </div>
+        </div>
+
+        <div class="skills-group">
+          <div class="skills-group-title">Automation & Integration</div>
+          <div class="skills-tags">
+            <span class="skill-tag">APIs REST</span>
+            <span class="skill-tag">Webhooks</span>
+            <span class="skill-tag">Data Pipelines</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Power BI</span>
+          </div>
+        </div>
+
+        <div class="skills-group">
+          <div class="skills-group-title">Infrastructure & DevOps</div>
+          <div class="skills-tags">
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">GPU Optimization</span>
+            <span class="skill-tag">Supabase / Postgres</span>
+            <span class="skill-tag">Pinecone</span>
+            <span class="skill-tag">AWS (Cloud)</span>
+          </div>
+        </div>
+
+        <div class="skills-group">
+          <div class="skills-group-title">Voice & Audio</div>
+          <div class="skills-tags">
+            <span class="skill-tag">Whisper</span>
+            <span class="skill-tag">Sherpa-ONNX</span>
+            <span class="skill-tag">Piper TTS</span>
+            <span class="skill-tag">ASR</span>
+          </div>
+        </div>
+
+        <div class="skills-group">
+          <div class="skills-group-title">Languages</div>
+          <div class="skills-tags">
+            <span class="skill-tag">Portuguese (Native)</span>
+            <span class="skill-tag">English (Professional)</span>
+            <span class="skill-tag">Spanish (Basic)</span>
+            <span class="skill-tag">Italian (Basic)</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      © 2026 <a href="https://github.com/ghostopw" target="_blank">ghostopw</a>. Brasília, DF — Brazil.
+    </footer>
+
+  </div>
+</main>
+
+<script>
+  // Page navigation
+  document.querySelectorAll('.sidebar-nav a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetPage = link.dataset.page;
+
+      // Update active nav
+      document.querySelectorAll('.sidebar-nav a').forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+
+      // Show page
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-' + targetPage).classList.add('active');
+
+      // Close mobile sidebar
+      document.querySelector('.sidebar').classList.remove('open');
+      document.querySelector('.sidebar-overlay').classList.remove('open');
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // Mobile sidebar toggle
+  function toggleSidebar() {
+    document.querySelector('.sidebar').classList.toggle('open');
+    document.querySelector('.sidebar-overlay').classList.toggle('open');
+  }
+</script>
+</body>
+</html>
