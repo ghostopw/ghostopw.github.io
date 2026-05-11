@@ -347,6 +347,13 @@
     flex: 1;
   }
 
+  .project-card-desc a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .project-card-desc a:hover { text-decoration: underline; }
+
   .project-card-tags {
     display: flex;
     flex-wrap: wrap;
@@ -675,6 +682,23 @@
         <div class="exp-card">
           <div class="exp-card-header">
             <div>
+              <div class="exp-role">Information Technology Intern</div>
+              <div class="exp-company">Up Business LTDA — Up Estágio</div>
+            </div>
+            <div class="exp-date">May 2026 — Present</div>
+          </div>
+          <div class="exp-desc">
+            Internship in Information Technology, supporting the development, implementation, testing,
+            corrective and evolutionary maintenance of systems, automations, spreadsheets, forms, and websites.
+            Also involved in database analysis and maintenance, process improvement routines, and technical
+            documentation for internal systems and client projects.
+            Stack: Web Development, Databases, Automation, Systems Maintenance.
+          </div>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-card-header">
+            <div>
               <div class="exp-role">AI Solutions Developer — Public Security</div>
               <div class="exp-company">CIIA — Centro Integrado de Inteligência Artificial</div>
             </div>
@@ -723,6 +747,13 @@
       <aside class="home-sidebar">
         <div class="home-sidebar-title">Recently Updated</div>
         <div class="recent-list">
+          <div class="recent-item">
+            <span class="recent-dot"></span>
+            <div class="recent-content">
+              <div class="recent-title">Added Banc_up CRM as featured project</div>
+              <div class="recent-meta">May 2026 · Project</div>
+            </div>
+          </div>
           <div class="recent-item">
             <span class="recent-dot"></span>
             <div class="recent-content">
@@ -790,6 +821,33 @@
       <section>
         <h2 class="section-title">Featured Projects</h2>
         <div class="projects-grid">
+
+
+          <div class="project-card">
+            <div class="project-card-title">
+              <a href="https://up-crm-jet.vercel.app" target="_blank">Banc_up CRM — Talent Bank</a>
+            </div>
+            <div class="project-card-desc">
+              Production-ready CRM and talent bank built to organize candidates, validate profiles,
+              manage shortlists, and support recruiting workflows. The system runs on Vercel and connects
+              to a PostgreSQL/Supabase database through Prisma, with authentication via NextAuth and AI-assisted
+              candidate analysis using Gemini.
+              <br><br>
+              <a href="https://github.com/ghostopw/up-crm" target="_blank" style="color: var(--accent); text-decoration: none;">GitHub Repository</a>
+              ·
+              <a href="https://up-crm-jet.vercel.app" target="_blank" style="color: var(--accent); text-decoration: none;">Live on Vercel</a>
+            </div>
+            <div class="project-card-tags">
+              <span class="project-tag award">Production</span>
+              <span class="project-tag">Next.js</span>
+              <span class="project-tag">TypeScript</span>
+              <span class="project-tag">Prisma</span>
+              <span class="project-tag">Supabase</span>
+              <span class="project-tag">NextAuth</span>
+              <span class="project-tag">Gemini API</span>
+              <span class="project-tag">Vercel</span>
+            </div>
+          </div>
 
           <div class="project-card">
             <div class="project-card-title">
