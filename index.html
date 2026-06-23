@@ -287,6 +287,28 @@
     font-weight: 600;
   }
 
+  .detail-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .detail-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    padding: 2px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    border: 2px solid var(--bg-sidebar);
+  }
+
+  .detail-header .section-title {
+    margin-bottom: 0;
+  }
+
   .back-link:hover {
     text-decoration: underline;
   }
@@ -844,7 +866,10 @@
     <!-- ═══ UP ESTÁGIO DETAIL PAGE ═══ -->
     <div class="page" id="page-up-estagio">
       <section>
-        <h2 class="section-title">Up Estágio — Technical Experience</h2>
+        <div class="detail-header">
+          <img src="profile.png" alt="Gabriel Guimarães" class="detail-avatar">
+          <h2 class="section-title">Up Estágio — Technical Experience</h2>
+        </div>
         <div class="exp-card">
           <div class="exp-card-header">
             <div>
@@ -882,7 +907,10 @@
     <!-- ═══ CIIA DETAIL PAGE ═══ -->
     <div class="page" id="page-ciia">
       <section>
-        <h2 class="section-title">CIIA — Technical Experience</h2>
+        <div class="detail-header">
+          <img src="profile.png" alt="Gabriel Guimarães" class="detail-avatar">
+          <h2 class="section-title">CIIA — Technical Experience</h2>
+        </div>
         <div class="exp-card">
           <div class="exp-card-header">
             <div>
