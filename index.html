@@ -3,7 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ghostopw | Gabriel Guimarães</title>
+<title>ghostopw | Gabriel Guimarães — AI Engineer</title>
+
+<!-- SEO -->
+<meta name="description" content="Gabriel Guimarães (ghostopw) — AI Engineer & Computer Engineering student in Brasília. Building AI solutions, LLMs, RAG, voice pipelines, automation, and full-stack web apps.">
+<meta name="keywords" content="Gabriel Guimarães, ghostopw, AI Engineer, LLMs, RAG, Machine Learning, Python, Next.js, Brasília, portfolio">
+<meta name="author" content="Gabriel Guimarães">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0d1117">
+<link rel="canonical" href="https://ghostopw.github.io/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="ghostopw | Gabriel Guimarães — AI Engineer">
+<meta property="og:description" content="AI Engineer & Computer Engineering student building LLMs, RAG, voice pipelines, automation, and full-stack web apps.">
+<meta property="og:image" content="https://ghostopw.github.io/profile.png">
+<meta property="og:url" content="https://ghostopw.github.io/">
+<meta property="og:site_name" content="Gabriel Guimarães Portfolio">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ghostopw | Gabriel Guimarães — AI Engineer">
+<meta name="twitter:description" content="AI Engineer & Computer Engineering student building LLMs, RAG, voice pipelines, automation, and full-stack web apps.">
+<meta name="twitter:image" content="https://ghostopw.github.io/profile.png">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="profile.png">
+<link rel="apple-touch-icon" href="profile.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=Lora:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -248,6 +275,22 @@
     overflow: hidden;
   }
 
+  .exp-card[data-detail-page] {
+    cursor: pointer;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
   .exp-card::before {
     content: '';
     position: absolute;
@@ -300,6 +343,23 @@
     color: var(--text-secondary);
     line-height: 1.7;
     margin-top: 0.6rem;
+  }
+
+  .exp-desc ul {
+    margin: 0.6rem 0 0.6rem 1.1rem;
+  }
+
+  .exp-desc li {
+    margin-bottom: 0.35rem;
+  }
+
+  code {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.85em;
+    background: var(--tag-bg);
+    color: var(--accent);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
   }
 
   /* ─── PROJECT CARDS ─── */
@@ -679,7 +739,7 @@
       <section>
         <h2 class="section-title">Experience</h2>
 
-        <div class="exp-card">
+        <div class="exp-card" data-detail-page="up-estagio">
           <div class="exp-card-header">
             <div>
               <div class="exp-role">Information Technology Intern</div>
@@ -688,21 +748,21 @@
             <div class="exp-date">May 2026 — Present</div>
           </div>
           <div class="exp-desc">
-            Internship in Information Technology, supporting the development, implementation, testing,
-            corrective and evolutionary maintenance of systems, automations, spreadsheets, forms, and websites.
-            Also involved in database analysis and maintenance, process improvement routines, and technical
-            documentation for internal systems and client projects.
-            Stack: Web Development, Databases, Automation, Systems Maintenance.
+            Delivered automation solutions, internal dashboards, and web tools for process optimization and client support.
+            Led the implementation of CRM improvements, workflow automations, and reporting systems using spreadsheets,
+            forms, and web interfaces. Built and maintained the company website <code>upestagios.com.br</code> from scratch. Performed database analysis, system maintenance, and technical documentation to
+            improve reliability and reduce manual effort across operations.
+            Stack: Web Development, Databases, Automation, Process Improvement.
           </div>
         </div>
 
-        <div class="exp-card">
+        <div class="exp-card" data-detail-page="ciia">
           <div class="exp-card-header">
             <div>
               <div class="exp-role">AI Solutions Developer — Public Security</div>
               <div class="exp-company">CIIA — Centro Integrado de Inteligência Artificial</div>
             </div>
-            <div class="exp-date">Jun 2025 — Present</div>
+            <div class="exp-date">Jun 2025 — Feb 2026</div>
           </div>
           <div class="exp-desc">
             Prototyping low-latency voice pipelines (ASR + TTS) for real-world environments.
@@ -781,6 +841,73 @@
       </div><!-- end home-layout -->
     </div>
 
+    <!-- ═══ UP ESTÁGIO DETAIL PAGE ═══ -->
+    <div class="page" id="page-up-estagio">
+      <section>
+        <h2 class="section-title">Up Estágio — Technical Experience</h2>
+        <div class="exp-card">
+          <div class="exp-card-header">
+            <div>
+              <div class="exp-role">Information Technology Intern</div>
+              <div class="exp-company">Up Business LTDA — Up Estágio</div>
+            </div>
+            <div class="exp-date">May 2026 — Present</div>
+          </div>
+          <div class="exp-desc">
+            Built technical automation and data integration solutions for internal teams and client operations.
+            Main contributions included:
+            <ul>
+              <li>Built the company website <code>upestagios.com.br</code> from scratch and end-to-end — owning
+                the full stack: UI/UX design, front-end, back-end, database modeling, deployment, and ongoing maintenance.</li>
+              <li>Architected the site as a full-stack Next.js 16 + React 19 + TypeScript application styled with
+                Tailwind CSS and shadcn/ui, backed by a Neon serverless PostgreSQL database.</li>
+              <li>Implemented Upstash Redis rate limiting, Zod schema validation, Nodemailer e-mail flows,
+                Google APIs integration, and PDF/DOCX document parsing.</li>
+              <li>Containerized the application with Docker and docker-compose (including a production compose file)
+                for reproducible builds and deployment.</li>
+              <li>Developed CRM workflow automations with spreadsheets, forms, and custom scripts to reduce manual work.</li>
+              <li>Implemented reporting tools and dashboards for operational KPIs, improving visibility and decision-making.</li>
+              <li>Managed database updates, migrations, and validation routines for user and project data.</li>
+              <li>Maintained internal websites, system integrations, and quality assurance for production releases.</li>
+              <li>Produced technical documentation, runbooks, and handoff materials for stakeholders and support teams.</li>
+            </ul>
+            Technologies: Next.js 16, React 19, TypeScript, Tailwind CSS, shadcn/ui, Neon PostgreSQL,
+            Upstash Redis, Zod, Nodemailer, Google APIs, Docker, REST APIs, automation scripts, technical documentation.
+          </div>
+        </div>
+        <a href="#" class="back-link" onclick="navigateToPage(event, 'home')">← Voltar para Home</a>
+      </section>
+    </div>
+
+    <!-- ═══ CIIA DETAIL PAGE ═══ -->
+    <div class="page" id="page-ciia">
+      <section>
+        <h2 class="section-title">CIIA — Technical Experience</h2>
+        <div class="exp-card">
+          <div class="exp-card-header">
+            <div>
+              <div class="exp-role">AI Solutions Developer — Public Security</div>
+              <div class="exp-company">CIIA — Centro Integrado de Inteligência Artificial</div>
+            </div>
+            <div class="exp-date">Jun 2025 — Feb 2026</div>
+          </div>
+          <div class="exp-desc">
+            Delivered AI and voice technology solutions for public security use cases.
+            Core responsibilities included:
+            <ul>
+              <li>Designed and deployed low-latency ASR + TTS pipelines using Whisper, Sherpa-ONNX, and Piper for field-ready voice applications.</li>
+              <li>Built Flutter demos and React dashboards for end-to-end validation of voice assistants and operational workflows.</li>
+              <li>Implemented LLM agents with LangChain and Supabase for context-aware assistants and secure retrieval.</li>
+              <li>Optimized model inference and deployment using Docker, GPU acceleration, and efficient prompt engineering.</li>
+              <li>Validated system reliability with data-driven testing, logging, and user feedback loops.</li>
+            </ul>
+            Technologies: Python, PyTorch, Flutter/Dart, React, Chainlit, Supabase, LangChain, Docker, Whisper, Sherpa-ONNX, Piper.
+          </div>
+        </div>
+        <a href="#" class="back-link" onclick="navigateToPage(event, 'home')">← Voltar para Home</a>
+      </section>
+    </div>
+
     <!-- ═══ ABOUT ═══ -->
     <div class="page" id="page-about">
       <section>
@@ -846,6 +973,32 @@
               <span class="project-tag">NextAuth</span>
               <span class="project-tag">Gemini API</span>
               <span class="project-tag">Vercel</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card-title">
+              <a href="https://upestagios.com.br" target="_blank">upestagios.com.br — Corporate Website</a>
+            </div>
+            <div class="project-card-desc">
+              Designed and built the company's complete website end-to-end — from architecture and UI
+              to deployment. A full-stack Next.js 16 + React 19 application styled with Tailwind CSS and
+              shadcn/ui, backed by a Neon serverless PostgreSQL database, with Upstash Redis rate limiting,
+              Zod validation, Nodemailer e-mail flows, Google APIs integration, and PDF/DOCX parsing.
+              Containerized with Docker and docker-compose for production deployment. Responsible for the
+              entire lifecycle: front-end, back-end, database design, containerization, and production maintenance.
+            </div>
+            <div class="project-card-tags">
+              <span class="project-tag award">Production</span>
+              <span class="project-tag">Next.js 16</span>
+              <span class="project-tag">React 19</span>
+              <span class="project-tag">TypeScript</span>
+              <span class="project-tag">Tailwind CSS</span>
+              <span class="project-tag">shadcn/ui</span>
+              <span class="project-tag">PostgreSQL (Neon)</span>
+              <span class="project-tag">Upstash Redis</span>
+              <span class="project-tag">Zod</span>
+              <span class="project-tag">Docker</span>
             </div>
           </div>
 
@@ -1064,11 +1217,39 @@
     });
   });
 
+  document.querySelectorAll('.exp-card[data-detail-page]').forEach(card => {
+    card.addEventListener('click', () => {
+      const detailPage = card.dataset.detailPage;
+      navigateToPage(null, detailPage);
+    });
+  });
+
+  function navigateToPage(event, pageId) {
+    if (event) event.preventDefault();
+
+    document.querySelectorAll('.sidebar-nav a').forEach(link => link.classList.remove('active'));
+
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + pageId).classList.add('active');
+
+    if (pageId === 'home' && event) {
+      document.querySelector('.sidebar-nav a[data-page="home"]').classList.add('active');
+    }
+
+    // Close mobile sidebar
+    document.querySelector('.sidebar').classList.remove('open');
+    document.querySelector('.sidebar-overlay').classList.remove('open');
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   // Mobile sidebar toggle
   function toggleSidebar() {
     document.querySelector('.sidebar').classList.toggle('open');
     document.querySelector('.sidebar-overlay').classList.toggle('open');
   }
 </script>
+
 </body>
 </html>
