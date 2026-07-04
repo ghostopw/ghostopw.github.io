@@ -632,6 +632,16 @@
   }
   .stamp.award { border-color: var(--accent); color: var(--accent); font-weight: 700; }
 
+  /* ─── WRITINGS ─── */
+  .pubs { max-width: 840px; margin: 0 auto; }
+  .pub-cite {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.6rem;
+  }
+
   /* ─── CERTS / INDEX ─── */
   .index-list { list-style: none; max-width: 720px; margin: 0 auto; }
   .index-list li {
@@ -734,6 +744,7 @@
       <a href="#" data-page="news" data-i18n="nav.news">Latest News</a>
       <a href="#" data-page="about" data-i18n="nav.about">About the Author</a>
       <a href="#" data-page="projects" data-i18n="nav.projects">Notable Works</a>
+      <a href="#" data-page="writings" data-i18n="nav.writings">Writings</a>
       <a href="#" data-page="certs" data-i18n="nav.certs">Accolades</a>
       <a href="#" data-page="skills" data-i18n="nav.skills">Spellbook</a>
     </nav>
@@ -812,6 +823,12 @@
 
               <section class="sidebox">
                 <div class="sidebox-title" data-i18n="h.stop">Stop Press — Latest Dispatches</div>
+                <div class="dispatch clickable" onclick="navigateToPage(null, 'news')">
+                  <div>
+                    <div class="dispatch-title" data-i18n="d0.t">Approved for the PIBITI research scholarship — Vigia-Dengue project</div>
+                    <div class="dispatch-meta" data-i18n="d0.m">Jul 2026 · Research — read the story ›</div>
+                  </div>
+                </div>
                 <div class="dispatch">
                   <div>
                     <div class="dispatch-title" data-i18n="d1.t">Added Banc_up CRM as a featured work</div>
@@ -824,10 +841,10 @@
                     <div class="dispatch-meta" data-i18n="d2.m">Jun 2025 · Employment</div>
                   </div>
                 </div>
-                <div class="dispatch">
+                <div class="dispatch clickable" onclick="navigateToPage(null, 'writings')">
                   <div>
                     <div class="dispatch-title" data-i18n="d3.t">Published paper on Minimax &amp; AlphaZero</div>
-                    <div class="dispatch-meta" data-i18n="d3.m">2025 · Research</div>
+                    <div class="dispatch-meta" data-i18n="d3.m">2025 · Research — see Writings ›</div>
                   </div>
                 </div>
                 <div class="dispatch clickable" onclick="navigateToPage(null, 'news')">
@@ -864,9 +881,14 @@
           <h3 class="dept-head" data-i18n="n.other">Other Dispatches</h3>
           <div class="briefs-grid">
             <div class="brief">
+              <div class="brief-title" data-i18n="b0.t">Guimarães Approved for the PIBITI Scholarship with Vigia-Dengue</div>
+              <div class="brief-meta" data-i18n="b0.m">Jul 2026 · Research &amp; Innovation — just in</div>
+              <p data-i18n="b0.p">Freshly announced: the engineer joins PIBITI, the institutional programme for technological innovation, with <em>Vigia-Dengue</em> — a digital early-warning tool for spatio-temporal stratification of dengue risk across the municipalities of a Brazilian state, under the supervision of Prof. Natália Ribeiro S. Evangelista, in Computer Engineering.</p>
+            </div>
+            <div class="brief">
               <div class="brief-title" data-i18n="b1.t">Treatise Published on Minimax &amp; AlphaZero</div>
               <div class="brief-meta" data-i18n="b1.m">2025 · Research</div>
-              <p data-i18n="b1.p">The author's paper on the Minimax algorithm applied to board games bridges classical heuristic search with modern approaches such as AlphaZero.</p>
+              <p data-i18n="b1.p">The author's paper on the Minimax algorithm applied to board games bridges classical heuristic search with modern approaches such as AlphaZero. <a href="https://doi.org/10.5281/zenodo.16777318" target="_blank">Read on Zenodo ›</a></p>
             </div>
             <div class="brief">
               <div class="brief-title" data-i18n="b2.t">Guimarães Joins CIIA to Enchant Public Security</div>
@@ -976,7 +998,7 @@
             <p class="about-sub" data-i18n="a.s1">What drives me</p>
             <p data-i18n="a.p4">I enjoy the full cycle: understanding the problem, prototyping fast, iterating with real data, and shipping something that works in production. I move comfortably between AI, web development, and infrastructure — Docker, Flutter, React, FastAPI, and whatever else the project demands.</p>
             <p class="about-sub" data-i18n="a.s2">On the academic side</p>
-            <p data-i18n="a.p5">I authored a paper on the Minimax algorithm applied to board games, bridging classical heuristic search with modern approaches like AlphaZero. I also took first place at the Big Data Hackathon with an end-to-end predictive-modelling solution.</p>
+            <p data-i18n="a.p5">I authored a <a href="https://doi.org/10.5281/zenodo.16777318" target="_blank">paper on the Minimax algorithm</a> applied to board games, bridging classical heuristic search with modern approaches like AlphaZero. I also took first place at the Big Data Hackathon with an end-to-end predictive-modelling solution.</p>
             <p class="about-sub" data-i18n="a.s3">Off the keyboard</p>
             <p data-i18n="a.p6">I'm into PC building, gaming, barbecue, and experimenting with cocktail recipes. Born and raised in Brasília.</p>
             <p class="contact-line" data-i18n="a.contact">Owl post: <a href="mailto:gabriel.guyma@gmail.com">gabriel.guyma@gmail.com</a></p>
@@ -1077,6 +1099,47 @@
                 <span class="stamp">HTML</span>
                 <span class="stamp">CSS</span>
                 <span class="stamp">GitHub Pages</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      </div>
+
+      <!-- ═══ WRITINGS ═══ -->
+      <div class="page" id="page-writings">
+        <article class="lead-story">
+          <p class="kicker" data-i18n="w.kicker">From the Academy's Archives</p>
+          <h2 class="headline" data-i18n="w.head">Scholarly Writings</h2>
+          <p class="byline" data-i18n="w.byline">Papers, datasets &amp; research duly committed to record</p>
+          <div class="ornament">⁂</div>
+          <div class="pubs">
+
+            <h3 class="dept-head" data-i18n="w.pub">Published Works</h3>
+            <div class="clipping">
+              <div class="clipping-title"><a href="https://doi.org/10.5281/zenodo.16777318" target="_blank">Conjunto de Dados de Partidas de Damas Geradas por Inteligência Artificial Utilizando Minimax com Poda Alfa-Beta</a></div>
+              <div class="pub-cite" data-i18n="w1.cite">GUIMARÃES, João Gabriel Alves — Zenodo, August 2025 · Data paper · DOI 10.5281/zenodo.16777318 · CC BY 4.0</div>
+              <div class="clipping-desc" data-i18n="w1.desc">A dataset of 1,000 checkers matches played by an AI agent using the Minimax algorithm with alpha-beta pruning — recording every move, board state, decision time, and outcome in open CSV/JSON formats. Built to support research and teaching in AI, game theory, and autonomous agents: training models on board games, benchmarking search algorithms, and analysing automated decision-making. <a href="https://doi.org/10.5281/zenodo.16777318" target="_blank">Read on Zenodo ›</a></div>
+              <div class="stamps">
+                <span class="stamp award">Data Paper</span>
+                <span class="stamp">Zenodo · DOI</span>
+                <span class="stamp">Minimax</span>
+                <span class="stamp">Alpha-Beta Pruning</span>
+                <span class="stamp" data-i18n="w1.s1">Game Theory</span>
+                <span class="stamp">CC BY 4.0</span>
+              </div>
+            </div>
+
+            <h3 class="dept-head" data-i18n="w.progress">Research in Progress</h3>
+            <div class="clipping">
+              <div class="clipping-title" data-i18n="w2.title">Vigia-Dengue — Digital Early-Warning Tool for Dengue Risk</div>
+              <div class="pub-cite" data-i18n="w2.cite">PIBITI scholarship · 2026 – ongoing · Advisor: Prof. Natália Ribeiro S. Evangelista · Computer Engineering</div>
+              <div class="clipping-desc" data-i18n="w2.desc">Development and evaluation of Vigia-Dengue: a digital early-warning tool for spatio-temporal stratification of dengue risk across the municipalities of a Brazilian state — undertaken within PIBITI, the institutional programme for technological innovation.</div>
+              <div class="stamps">
+                <span class="stamp award">PIBITI</span>
+                <span class="stamp" data-i18n="w2.s1">Public Health</span>
+                <span class="stamp">Data Science</span>
+                <span class="stamp" data-i18n="w2.s2">Early Warning</span>
               </div>
             </div>
 
@@ -1202,6 +1265,7 @@
     'nav.news': `Últimas Notícias`,
     'nav.about': `Sobre o Autor`,
     'nav.projects': `Obras Notáveis`,
+    'nav.writings': `Escritos`,
     'nav.certs': `Honrarias`,
     'nav.skills': `Grimório`,
 
@@ -1235,9 +1299,11 @@
     'd2.t': `Ingressa no CIIA como Engenheiro de IA`,
     'd2.m': `Jun 2025 · Trabalho`,
     'd3.t': `Publicado artigo sobre Minimax &amp; AlphaZero`,
-    'd3.m': `2025 · Pesquisa`,
+    'd3.m': `2025 · Pesquisa — veja em Escritos ›`,
     'd4.t': `Primeiro lugar — Hackathon de Big Data`,
     'd4.m': `2025 · Conquista — leia a matéria ›`,
+    'd0.t': `Aprovado na bolsa de pesquisa PIBITI — projeto Vigia-Dengue`,
+    'd0.m': `Jul 2026 · Pesquisa — leia a matéria ›`,
 
     'n.kicker': `Extra! Extra! · Reportagem Especial`,
     'n.head': `Bruxo Local Conquista o Primeiro Lugar<br>no Hackathon de Big Data`,
@@ -1249,9 +1315,12 @@
     'n.quote': `“Nenhum feitiço secreto foi lançado — apenas um pipeline sólido e iteração incansável.”
             <span class="attrib">— o campeão, quando indagado sobre seu método</span>`,
     'n.other': `Outros Despachos`,
+    'b0.t': `Guimarães Aprovado na Bolsa PIBITI com o Vigia-Dengue`,
+    'b0.m': `Jul 2026 · Pesquisa &amp; Inovação — recém-saído do prelo`,
+    'b0.p': `Recém-anunciado: o engenheiro ingressa no PIBITI, programa institucional de iniciação em desenvolvimento tecnológico e inovação, com o <em>Vigia-Dengue</em> — ferramenta digital de alerta precoce para estratificação espaço-temporal do risco de dengue em municípios de um estado brasileiro, sob orientação da Prof.ª Natália Ribeiro S. Evangelista, em Engenharia da Computação.`,
     'b1.t': `Publicado Tratado sobre Minimax &amp; AlphaZero`,
     'b1.m': `2025 · Pesquisa`,
-    'b1.p': `O artigo do autor sobre o algoritmo Minimax aplicado a jogos de tabuleiro conecta a busca heurística clássica a abordagens modernas como o AlphaZero.`,
+    'b1.p': `O artigo do autor sobre o algoritmo Minimax aplicado a jogos de tabuleiro conecta a busca heurística clássica a abordagens modernas como o AlphaZero. <a href="https://doi.org/10.5281/zenodo.16777318" target="_blank">Leia no Zenodo ›</a>`,
     'b2.t': `Guimarães Ingressa no CIIA para Encantar a Segurança Pública`,
     'b2.m': `Jun 2025 · Trabalho`,
     'b2.p': `Pipelines de voz (ASR + TTS) e assistentes movidos a LLMs entram em serviço ativo. <span class="read-more" onclick="navigateToPage(event, 'ciia')">Dossiê completo ›</span>`,
@@ -1299,7 +1368,7 @@
     'a.s1': `O que me move`,
     'a.p4': `Gosto do ciclo completo: entender o problema, prototipar rápido, iterar com dados reais e entregar algo que funcione em produção. Transito com naturalidade entre IA, desenvolvimento web e infraestrutura — Docker, Flutter, React, FastAPI e o que mais o projeto exigir.`,
     'a.s2': `No lado acadêmico`,
-    'a.p5': `Sou autor de um artigo sobre o algoritmo Minimax aplicado a jogos de tabuleiro, ligando a busca heurística clássica a abordagens modernas como o AlphaZero. Também conquistei o primeiro lugar no Hackathon de Big Data com uma solução de modelagem preditiva de ponta a ponta.`,
+    'a.p5': `Sou autor de um <a href="https://doi.org/10.5281/zenodo.16777318" target="_blank">artigo sobre o algoritmo Minimax</a> aplicado a jogos de tabuleiro, ligando a busca heurística clássica a abordagens modernas como o AlphaZero. Também conquistei o primeiro lugar no Hackathon de Big Data com uma solução de modelagem preditiva de ponta a ponta.`,
     'a.s3': `Longe do teclado`,
     'a.p6': `Curto montar PCs, jogar, churrasco e experimentar receitas de coquetéis. Nascido e criado em Brasília.`,
     'a.contact': `Correio-coruja: <a href="mailto:gabriel.guyma@gmail.com">gabriel.guyma@gmail.com</a>`,
@@ -1319,6 +1388,20 @@
     'st.prod': `Produção`,
     'st.first': `🏆 1º Lugar`,
     'st.edu': `Educação`,
+
+    'w.kicker': `Dos Arquivos da Academia`,
+    'w.head': `Escritos Acadêmicos`,
+    'w.byline': `Artigos, conjuntos de dados &amp; pesquisas devidamente registrados`,
+    'w.pub': `Obras Publicadas`,
+    'w1.cite': `GUIMARÃES, João Gabriel Alves — Zenodo, agosto de 2025 · Data paper · DOI 10.5281/zenodo.16777318 · CC BY 4.0`,
+    'w1.desc': `Um conjunto de dados com 1.000 partidas de damas disputadas por um agente de IA usando o algoritmo Minimax com poda alfa-beta — registrando cada lance, estado do tabuleiro, tempo de decisão e resultado em formatos abertos CSV/JSON. Criado para apoiar pesquisa e ensino em IA, teoria dos jogos e agentes autônomos: treinamento de modelos em jogos de tabuleiro, comparação de algoritmos de busca e análise de tomada de decisão automatizada. <a href="https://doi.org/10.5281/zenodo.16777318" target="_blank">Leia no Zenodo ›</a>`,
+    'w1.s1': `Teoria dos Jogos`,
+    'w.progress': `Pesquisa em Andamento`,
+    'w2.title': `Vigia-Dengue — Ferramenta Digital de Alerta Precoce para o Risco de Dengue`,
+    'w2.cite': `Bolsa PIBITI · 2026 – em andamento · Orientadora: Prof.ª Natália Ribeiro S. Evangelista · Engenharia da Computação`,
+    'w2.desc': `Desenvolvimento e avaliação do Vigia-Dengue: ferramenta digital de alerta precoce para estratificação espaço-temporal do risco de dengue em municípios de um estado brasileiro — no âmbito do PIBITI, programa institucional de iniciação em desenvolvimento tecnológico e inovação.`,
+    'w2.s1': `Saúde Pública`,
+    'w2.s2': `Alerta Precoce`,
 
     'ce.kicker': `Honras &amp; Distinções`,
     'ce.head': `Honrarias &amp; Credenciais`,
