@@ -10,7 +10,7 @@
 <meta name="keywords" content="Gabriel Guimarães, ghostopw, AI Engineer, LLMs, RAG, Machine Learning, Python, Next.js, Brasília, portfolio, Daily Prophet">
 <meta name="author" content="Gabriel Guimarães">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#1a1510">
+<meta name="theme-color" content="#f3e9d2">
 <link rel="canonical" href="https://ghostopw.github.io/">
 
 <!-- Open Graph -->
@@ -54,39 +54,80 @@
 
   body {
     font-family: 'Old Standard TT', 'IM Fell English', Georgia, serif;
-    background: var(--desk-2);
+    background: var(--paper);
     color: var(--ink);
     line-height: 1.65;
   }
 
-  /* ─── DESK & PAPER ─── */
+  /* ─── FULL-BLEED PAPER ─── */
   .desk {
     min-height: 100vh;
-    background: radial-gradient(ellipse at 50% -5%, var(--desk-1), var(--desk-2) 72%);
-    padding: 2.4rem 1rem 3.5rem;
-    display: flex;
-    justify-content: center;
   }
 
   .newspaper {
     width: 100%;
-    max-width: 1080px;
+    min-height: 100vh;
     background-color: var(--paper);
     background-image:
       radial-gradient(ellipse at 18% 8%, rgba(120,88,40,0.07), transparent 55%),
       radial-gradient(ellipse at 85% 92%, rgba(120,88,40,0.06), transparent 55%),
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
-    padding: 2.4rem 2.8rem 3rem;
-    border: 1px solid #d6c69f;
-    box-shadow: 0 14px 50px rgba(0,0,0,0.6), 0 2px 6px rgba(0,0,0,0.4);
+    padding: 1.4rem clamp(1.2rem, 4vw, 3rem) 3rem;
     position: relative;
+  }
+  /* keep reading width comfortable while paper fills the screen */
+  .newspaper > .lang-bar,
+  .newspaper > .masthead,
+  .newspaper > .sections-bar,
+  .newspaper > main,
+  .newspaper > .paper-footer {
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .newspaper::after {
     content: '';
-    position: absolute;
+    position: fixed;
     inset: 0;
     pointer-events: none;
     box-shadow: inset 0 0 90px rgba(70,45,15,0.14);
+  }
+
+  /* ─── LANGUAGE BAR ─── */
+  .lang-bar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.45rem;
+    margin-bottom: 0.6rem;
+  }
+  .lang-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    background: none;
+    border: 1px solid transparent;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    color: var(--ink-soft);
+    padding: 0.28rem 0.65rem;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .lang-btn svg {
+    width: 21px;
+    height: 14px;
+    display: block;
+    border: 1px solid rgba(43,33,23,0.4);
+    box-shadow: 0 1px 2px rgba(30,15,5,0.2);
+  }
+  .lang-btn:hover { color: var(--ink); border-color: var(--ink-faint); }
+  .lang-btn.active {
+    border-color: var(--rule);
+    color: var(--accent);
+    background: rgba(255,255,255,0.28);
   }
 
   /* ─── MASTHEAD ─── */
@@ -406,6 +447,113 @@
   .dispatch-title { font-size: 0.88rem; color: var(--ink-2); line-height: 1.35; }
   .dispatch-meta { font-family: 'IM Fell English', serif; font-style: italic; font-size: 0.76rem; color: var(--ink-faint); }
 
+  /* ─── NEWS ─── */
+  .news-feature {
+    border: 3px double var(--rule);
+    background: rgba(255,255,255,0.18);
+    padding: 1.3rem 1.4rem 1.1rem;
+    margin: 1.8rem 0 0.4rem;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .news-feature:hover { background: rgba(124,35,26,0.06); }
+  .extra-ribbon {
+    position: absolute;
+    top: -0.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: var(--paper);
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.95rem;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(30,15,5,0.3);
+  }
+  .news-feature-head {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.55rem;
+    line-height: 1.12;
+    text-align: center;
+    color: var(--ink);
+    margin: 0.25rem 0 0.4rem;
+  }
+  .news-feature-sub {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    text-align: center;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin-bottom: 0;
+  }
+  .news-columns {
+    columns: 2;
+    column-gap: 2.4rem;
+    column-rule: 1px solid var(--ink-faint);
+    margin-top: 0.4rem;
+  }
+  .news-lead-article p { text-align: justify; hyphens: auto; }
+  .news-lead-article .kicker, .news-lead-article .byline,
+  .news-lead-article .subhead, .news-lead-article .brief-meta { text-align: center; }
+  .dateline {
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .pull-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.4;
+    text-align: center;
+    color: var(--accent);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 1rem 1.4rem;
+    margin: 1.4rem auto 1.6rem;
+    max-width: 540px;
+  }
+  .pull-quote .attrib {
+    display: block;
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin-top: 0.45rem;
+  }
+  .briefs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 2.4rem;
+    margin-top: 0.4rem;
+  }
+  .brief { padding: 0.9rem 0; border-bottom: 1px dotted var(--ink-faint); }
+  .brief-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 0.15rem;
+  }
+  .brief-meta {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    margin-bottom: 0.3rem;
+  }
+  .brief p { font-size: 0.9rem; color: var(--ink-2); margin-bottom: 0; text-align: left; }
+  .brief .read-more { cursor: pointer; }
+  .dispatch.clickable { cursor: pointer; }
+  .dispatch.clickable:hover .dispatch-title { color: var(--accent); }
+
   /* ─── DETAIL PAGES ─── */
   .detail-grid {
     display: grid;
@@ -431,7 +579,7 @@
 
   /* ─── ABOUT COLUMNS ─── */
   .about-columns { columns: 2; column-gap: 2.6rem; column-rule: 1px solid var(--ink-faint); }
-  .about-columns p { font-size: 0.98rem; color: var(--ink-2); }
+  .about-columns p { font-size: 0.98rem; color: var(--ink-2); text-align: justify; hyphens: auto; }
   .about-columns .lead { color: var(--ink); }
   .about-sub {
     font-family: 'Playfair Display', serif;
@@ -455,6 +603,11 @@
     margin-bottom: 1.6rem;
     background: rgba(255,255,255,0.15);
     box-shadow: 2px 2px 0 rgba(43,33,23,0.12);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .clipping:hover {
+    transform: translateY(-2px);
+    box-shadow: 3px 4px 0 rgba(43,33,23,0.2);
   }
   .clipping-title {
     font-family: 'Playfair Display', serif;
@@ -526,13 +679,15 @@
     .col-main { border-right: none; padding-right: 0; }
     .detail-grid { grid-template-columns: 1fr; }
     .portrait-sm { max-width: 260px; margin: 0 auto; }
-    .about-columns, .clippings, .spellbook { columns: 1; }
+    .about-columns, .clippings, .spellbook, .news-columns { columns: 1; }
+    .briefs-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 560px) {
-    .newspaper { padding: 1.6rem 1.2rem 2rem; }
+    .newspaper { padding: 1.2rem 1.2rem 2rem; }
     .masthead-top, .masthead-date { justify-content: center; text-align: center; }
     .sections-bar a { padding: 0.2rem 0.7rem; font-size: 0.72rem; }
     .sections-bar a + a { border-left: none; }
+    .lang-bar { justify-content: center; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -545,29 +700,42 @@
 <div class="desk">
   <div class="newspaper">
 
+    <!-- ═══ LANGUAGE BAR ═══ -->
+    <div class="lang-bar">
+      <button class="lang-btn" data-lang="pt" onclick="setLang('pt')" aria-label="Português">
+        <svg viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#009b3a"/><path d="M10 1.8 18 7l-8 5.2L2 7z" fill="#fedf00"/><circle cx="10" cy="7" r="2.6" fill="#002776"/><path d="M7.5 6.6c1.8-.6 3.4-.4 5 .7" stroke="#fff" stroke-width="0.45" fill="none"/></svg>
+        PT
+      </button>
+      <button class="lang-btn active" data-lang="en" onclick="setLang('en')" aria-label="English">
+        <svg viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#012169"/><path d="M0 0l20 14M20 0L0 14" stroke="#fff" stroke-width="2.8"/><path d="M0 0l20 14M20 0L0 14" stroke="#C8102E" stroke-width="1.2"/><path d="M10 0v14M0 7h20" stroke="#fff" stroke-width="4.6"/><path d="M10 0v14M0 7h20" stroke="#C8102E" stroke-width="2.8"/></svg>
+        EN
+      </button>
+    </div>
+
     <!-- ═══ MASTHEAD ═══ -->
     <header class="masthead">
       <div class="masthead-top">
         <span>Vol. IX · No. 9¾</span>
-        <span>Established MMXXIII</span>
-        <span>Price: Five Galleons</span>
+        <span data-i18n="m.est">Established MMXXIII</span>
+        <span data-i18n="m.price">Price: Five Galleons</span>
       </div>
-      <h1 class="masthead-title">The Daily Prophet</h1>
-      <div class="masthead-motto">Wizarding Dispatches on Artificial Intelligence, Automation &amp; Software Sorcery</div>
+      <h1 class="masthead-title" data-i18n="m.title">The Daily Prophet</h1>
+      <div class="masthead-motto" data-i18n="m.motto">Wizarding Dispatches on Artificial Intelligence, Automation &amp; Software Sorcery</div>
       <div class="masthead-date">
-        <span>Brasília · Brazil</span>
-        <span>Saturday, 4th July 2026</span>
-        <span>Special Edition</span>
+        <span data-i18n="m.city">Brasília · Brazil</span>
+        <span data-i18n="m.date">Saturday, 4th July 2026</span>
+        <span data-i18n="m.edition">Special Edition</span>
       </div>
     </header>
 
     <!-- ═══ SECTION NAV ═══ -->
     <nav class="sections-bar">
-      <a href="#" class="active" data-page="home">Front Page</a>
-      <a href="#" data-page="about">About the Author</a>
-      <a href="#" data-page="projects">Notable Works</a>
-      <a href="#" data-page="certs">Accolades</a>
-      <a href="#" data-page="skills">Spellbook</a>
+      <a href="#" class="active" data-page="home" data-i18n="nav.home">Front Page</a>
+      <a href="#" data-page="news" data-i18n="nav.news">Latest News</a>
+      <a href="#" data-page="about" data-i18n="nav.about">About the Author</a>
+      <a href="#" data-page="projects" data-i18n="nav.projects">Notable Works</a>
+      <a href="#" data-page="certs" data-i18n="nav.certs">Accolades</a>
+      <a href="#" data-page="skills" data-i18n="nav.skills">Spellbook</a>
     </nav>
 
     <main>
@@ -575,38 +743,44 @@
       <!-- ═══ FRONT PAGE ═══ -->
       <div class="page active" id="page-home">
         <article class="lead-story">
-          <p class="kicker">Front Page · Exclusive Report</p>
+          <p class="kicker" data-i18n="h.kicker">Front Page · Exclusive Report</p>
           <h2 class="headline headline-xl">Gabriel Guimarães</h2>
-          <p class="subhead">AI Engineer · Computer Engineering Student · Builder of Intelligent Systems</p>
-          <p class="byline">By Our Technology Correspondent — Brasília, Distrito Federal</p>
+          <p class="subhead" data-i18n="h.subhead">AI Engineer · Computer Engineering Student · Builder of Intelligent Systems</p>
+          <p class="byline" data-i18n="h.byline">By Our Technology Correspondent — Brasília, Distrito Federal</p>
           <div class="ornament">⁂</div>
 
           <div class="frontpage-grid">
             <div class="col-main">
-              <p class="lead drop">Computer Engineering student at IESB and AI Engineer at CIIA — Centro Integrado de Inteligência Artificial, building AI solutions for public security. Hands-on experience with LLMs, RAG, process automation, and full-stack development. Previously served at Outlier AI as a programmer and language-model trainer.</p>
-              <p>Author of a paper on the Minimax algorithm applied to board games, exploring its relationship with modern AI techniques such as AlphaZero. Driven by solving complex code and infrastructure problems — and by the occasional impossible deadline.</p>
-              <p class="topics"><span>Filed under:</span> Python · LLMs · RAG · MLOps · Computer Vision · Docker · Flutter · React</p>
+              <p class="lead drop" data-i18n="h.p1">Computer Engineering student at IESB and AI Engineer at CIIA — Centro Integrado de Inteligência Artificial, building AI solutions for public security. Hands-on experience with LLMs, RAG, process automation, and full-stack development. Previously served at Outlier AI as a programmer and language-model trainer.</p>
+              <p data-i18n="h.p2">Author of a paper on the Minimax algorithm applied to board games, exploring its relationship with modern AI techniques such as AlphaZero. Driven by solving complex code and infrastructure problems — and by the occasional impossible deadline.</p>
+              <p class="topics" data-i18n="h.topics"><span>Filed under:</span> Python · LLMs · RAG · MLOps · Computer Vision · Docker · Flutter · React</p>
 
-              <h3 class="dept-head">Career &amp; Employment</h3>
+              <div class="news-feature" onclick="navigateToPage(null, 'news')">
+                <span class="extra-ribbon" data-i18n="h.extra">Extra · In the News</span>
+                <h3 class="news-feature-head" data-i18n="h.extrahead">Local Wizard Seizes First Place at the Big Data Hackathon</h3>
+                <p class="news-feature-sub" data-i18n="h.extrasub">Judges spellbound by an end-to-end data pipeline — read the full report in Latest News ›</p>
+              </div>
+
+              <h3 class="dept-head" data-i18n="h.career">Career &amp; Employment</h3>
 
               <div class="exp-article" data-detail-page="up-estagio">
-                <h4 class="exp-title">Information Technology Intern</h4>
-                <p class="exp-meta">Up Business LTDA — Up Estágio · May 2026 – Present</p>
-                <p class="exp-body">Delivered automation solutions, internal dashboards, and web tools for process optimisation and client support. Led CRM improvements, workflow automations, and reporting systems — and built the company website <em>upestagios.com.br</em> from scratch.</p>
-                <span class="read-more">Read the full story ›</span>
+                <h4 class="exp-title" data-i18n="e1.title">Information Technology Intern</h4>
+                <p class="exp-meta" data-i18n="e1.meta">Up Business LTDA — Up Estágio · May 2026 – Present</p>
+                <p class="exp-body" data-i18n="e1.body">Delivered automation solutions, internal dashboards, and web tools for process optimisation and client support. Led CRM improvements, workflow automations, and reporting systems — and built the company website <em>upestagios.com.br</em> from scratch.</p>
+                <span class="read-more" data-i18n="readmore">Read the full story ›</span>
               </div>
 
               <div class="exp-article" data-detail-page="ciia">
-                <h4 class="exp-title">AI Solutions Developer — Public Security</h4>
-                <p class="exp-meta">CIIA — Centro Integrado de Inteligência Artificial · Jun 2025 – Feb 2026</p>
-                <p class="exp-body">Prototyped low-latency voice pipelines (ASR + TTS) for real-world environments, integrating Whisper, Sherpa-ONNX, and Piper. Built LLM-powered chatbots and Flutter demos with context retrieval and iterative responses.</p>
-                <span class="read-more">Read the full story ›</span>
+                <h4 class="exp-title" data-i18n="e2.title">AI Solutions Developer — Public Security</h4>
+                <p class="exp-meta" data-i18n="e2.meta">CIIA — Centro Integrado de Inteligência Artificial · Jun 2025 – Feb 2026</p>
+                <p class="exp-body" data-i18n="e2.body">Prototyped low-latency voice pipelines (ASR + TTS) for real-world environments, integrating Whisper, Sherpa-ONNX, and Piper. Built LLM-powered chatbots and Flutter demos with context retrieval and iterative responses.</p>
+                <span class="read-more" data-i18n="readmore">Read the full story ›</span>
               </div>
 
               <div class="exp-article">
-                <h4 class="exp-title">AI Programmer &amp; LLM Trainer</h4>
-                <p class="exp-meta">Outlier AI · Oct 2023 – Jun 2025</p>
-                <p class="exp-body">Development and training of AI language models. Business-process automation with AI system integration. Data analysis with Python, SQL, and Power BI to generate dashboards and actionable insights.</p>
+                <h4 class="exp-title" data-i18n="e3.title">AI Programmer &amp; LLM Trainer</h4>
+                <p class="exp-meta" data-i18n="e3.meta">Outlier AI · Oct 2023 – Jun 2025</p>
+                <p class="exp-body" data-i18n="e3.body">Development and training of AI language models. Business-process automation with AI system integration. Data analysis with Python, SQL, and Power BI to generate dashboards and actionable insights.</p>
               </div>
             </div>
 
@@ -619,47 +793,47 @@
                     <span class="vignette"></span>
                   </div>
                 </div>
-                <figcaption>Mr. Guimarães at his workstation in Brasília. <span class="cap-note">(The photograph, as is customary in the Prophet, refuses to hold still.)</span></figcaption>
+                <figcaption data-i18n="h.caption">Mr. Guimarães at his workstation in Brasília. <span class="cap-note">(The photograph, as is customary in the Prophet, refuses to hold still.)</span></figcaption>
               </figure>
 
               <section class="sidebox">
-                <div class="sidebox-title">Schools of Study</div>
+                <div class="sidebox-title" data-i18n="h.edu">Schools of Study</div>
                 <div class="edu-item">
                   <div class="edu-school">IESB — Instituto de Educação Superior de Brasília</div>
-                  <div class="edu-degree">B.Sc. in Computer Engineering</div>
-                  <div class="edu-period">Jan 2025 — Jul 2027 (ongoing)</div>
+                  <div class="edu-degree" data-i18n="edu.degree">B.Sc. in Computer Engineering</div>
+                  <div class="edu-period" data-i18n="edu.p1">Jan 2025 — Jul 2027 (ongoing)</div>
                 </div>
                 <div class="edu-item">
                   <div class="edu-school">UniCEUB — Centro Universitário de Brasília</div>
-                  <div class="edu-degree">B.Sc. in Computer Engineering</div>
+                  <div class="edu-degree" data-i18n="edu.degree">B.Sc. in Computer Engineering</div>
                   <div class="edu-period">Jan 2023 — Dec 2024</div>
                 </div>
               </section>
 
               <section class="sidebox">
-                <div class="sidebox-title">Stop Press — Latest Dispatches</div>
+                <div class="sidebox-title" data-i18n="h.stop">Stop Press — Latest Dispatches</div>
                 <div class="dispatch">
                   <div>
-                    <div class="dispatch-title">Added Banc_up CRM as a featured work</div>
-                    <div class="dispatch-meta">May 2026 · Project</div>
+                    <div class="dispatch-title" data-i18n="d1.t">Added Banc_up CRM as a featured work</div>
+                    <div class="dispatch-meta" data-i18n="d1.m">May 2026 · Project</div>
                   </div>
                 </div>
                 <div class="dispatch">
                   <div>
-                    <div class="dispatch-title">Joined CIIA as AI Engineer</div>
-                    <div class="dispatch-meta">Jun 2025 · Employment</div>
+                    <div class="dispatch-title" data-i18n="d2.t">Joined CIIA as AI Engineer</div>
+                    <div class="dispatch-meta" data-i18n="d2.m">Jun 2025 · Employment</div>
                   </div>
                 </div>
                 <div class="dispatch">
                   <div>
-                    <div class="dispatch-title">Published paper on Minimax &amp; AlphaZero</div>
-                    <div class="dispatch-meta">2025 · Research</div>
+                    <div class="dispatch-title" data-i18n="d3.t">Published paper on Minimax &amp; AlphaZero</div>
+                    <div class="dispatch-meta" data-i18n="d3.m">2025 · Research</div>
                   </div>
                 </div>
-                <div class="dispatch">
+                <div class="dispatch clickable" onclick="navigateToPage(null, 'news')">
                   <div>
-                    <div class="dispatch-title">First place — Big Data Hackathon</div>
-                    <div class="dispatch-meta">2025 · Achievement</div>
+                    <div class="dispatch-title" data-i18n="d4.t">First place — Big Data Hackathon</div>
+                    <div class="dispatch-meta" data-i18n="d4.m">2025 · Achievement — read the story ›</div>
                   </div>
                 </div>
               </section>
@@ -668,12 +842,59 @@
         </article>
       </div>
 
+      <!-- ═══ LATEST NEWS ═══ -->
+      <div class="page" id="page-news">
+        <article class="lead-story news-lead-article">
+          <p class="kicker" data-i18n="n.kicker">Extra! Extra! · Special Report</p>
+          <h2 class="headline" data-i18n="n.head">Local Wizard Seizes First Place<br>at the Big Data Hackathon</h2>
+          <p class="subhead" data-i18n="n.sub">An end-to-end data pipeline leaves the judges spellbound — rivals still consulting their crystal balls</p>
+          <p class="byline" data-i18n="n.byline">By Our Special Correspondent — Brasília, 2025</p>
+          <div class="ornament">⁂</div>
+
+          <div class="news-columns">
+            <p class="drop" data-i18n="n.p1"><span class="dateline">Brasília</span> — In a contest that gathered some of the most promising young minds in data science, <em>Gabriel Guimarães</em> — known in certain circles as ghostopw — claimed first place at the Big Data Hackathon, presenting a complete end-to-end solution that carried raw data all the way to working predictions.</p>
+            <p data-i18n="n.p2">Under the merciless pressure of the hackathon clock, the young engineer assembled a full data pipeline — ingestion, cleaning, and feature engineering — and crowned it with predictive models that outperformed the field. Witnesses confirm that no Time-Turner was involved: merely Python, sound methodology, and an unreasonable quantity of coffee.</p>
+            <p data-i18n="n.p3">The winning work remains open to public scrutiny in the champion's <a href="https://github.com/ghostopw/ds_bigdata_hackathon" target="_blank">own repository</a> — a complete specimen of the data-science craft: pipeline, modelling, and evaluation, end to end.</p>
+          </div>
+
+          <div class="pull-quote" data-i18n="n.quote">“No secret spell was cast — only a solid pipeline and relentless iteration.”
+            <span class="attrib">— the champion, when pressed for his method</span>
+          </div>
+
+          <h3 class="dept-head" data-i18n="n.other">Other Dispatches</h3>
+          <div class="briefs-grid">
+            <div class="brief">
+              <div class="brief-title" data-i18n="b1.t">Treatise Published on Minimax &amp; AlphaZero</div>
+              <div class="brief-meta" data-i18n="b1.m">2025 · Research</div>
+              <p data-i18n="b1.p">The author's paper on the Minimax algorithm applied to board games bridges classical heuristic search with modern approaches such as AlphaZero.</p>
+            </div>
+            <div class="brief">
+              <div class="brief-title" data-i18n="b2.t">Guimarães Joins CIIA to Enchant Public Security</div>
+              <div class="brief-meta" data-i18n="b2.m">Jun 2025 · Employment</div>
+              <p data-i18n="b2.p">Voice pipelines (ASR + TTS) and LLM-powered assistants enter active service. <span class="read-more" onclick="navigateToPage(event, 'ciia')">Full dossier ›</span></p>
+            </div>
+            <div class="brief">
+              <div class="brief-title" data-i18n="b3.t">upestagios.com.br Conjured From Scratch</div>
+              <div class="brief-meta" data-i18n="b3.m">May 2026 · Craftsmanship</div>
+              <p data-i18n="b3.p">A corporate website built end-to-end — Next.js 16, Neon PostgreSQL, and Docker among the ingredients. <span class="read-more" onclick="navigateToPage(event, 'up-estagio')">Full dossier ›</span></p>
+            </div>
+            <div class="brief">
+              <div class="brief-title" data-i18n="b4.t">This Newspaper Reborn in Wizarding Print</div>
+              <div class="brief-meta" data-i18n="b4.m">Jul 2026 · The Press</div>
+              <p data-i18n="b4.p">The author's portfolio abandons ordinary pixels and adopts the honourable typography you are now reading.</p>
+            </div>
+          </div>
+
+          <a href="#" class="back-link" onclick="navigateToPage(event, 'home')" data-i18n="back">← Return to the Front Page</a>
+        </article>
+      </div>
+
       <!-- ═══ UP ESTÁGIO DETAIL ═══ -->
       <div class="page" id="page-up-estagio">
         <article class="lead-story">
-          <p class="kicker">Career Dossier</p>
-          <h2 class="headline">Up Estágio — The Full Account</h2>
-          <p class="byline">A detailed report on the tenure of G. Guimarães</p>
+          <p class="kicker" data-i18n="dossier">Career Dossier</p>
+          <h2 class="headline" data-i18n="u.head">Up Estágio — The Full Account</h2>
+          <p class="byline" data-i18n="u.byline">A detailed report on the tenure of G. Guimarães</p>
           <div class="ornament">⁂</div>
           <div class="detail-grid">
             <figure class="portrait portrait-sm">
@@ -684,34 +905,34 @@
                   <span class="vignette"></span>
                 </div>
               </div>
-              <figcaption>The correspondent, hard at work.</figcaption>
+              <figcaption data-i18n="corr">The correspondent, hard at work.</figcaption>
             </figure>
             <div class="detail-body">
-              <p class="exp-meta">Information Technology Intern · Up Business LTDA — Up Estágio · May 2026 – Present</p>
-              <p>Built technical automation and data-integration solutions for internal teams and client operations. Principal contributions included:</p>
+              <p class="exp-meta" data-i18n="u.meta">Information Technology Intern · Up Business LTDA — Up Estágio · May 2026 – Present</p>
+              <p data-i18n="u.intro">Built technical automation and data-integration solutions for internal teams and client operations. Principal contributions included:</p>
               <ul class="story-list">
-                <li>Built the company website <em>upestagios.com.br</em> from scratch and end-to-end — owning the full stack: UI/UX design, front-end, back-end, database modelling, deployment, and ongoing maintenance.</li>
-                <li>Architected the site as a full-stack Next.js 16 + React 19 + TypeScript application styled with Tailwind CSS and shadcn/ui, backed by a Neon serverless PostgreSQL database.</li>
-                <li>Implemented Upstash Redis rate limiting, Zod schema validation, Nodemailer e-mail flows, Google APIs integration, and PDF/DOCX document parsing.</li>
-                <li>Containerised the application with Docker and docker-compose (including a production compose file) for reproducible builds and deployment.</li>
-                <li>Developed CRM workflow automations with spreadsheets, forms, and custom scripts to reduce manual work.</li>
-                <li>Implemented reporting tools and dashboards for operational KPIs, improving visibility and decision-making.</li>
-                <li>Managed database updates, migrations, and validation routines for user and project data.</li>
-                <li>Produced technical documentation, runbooks, and handoff materials for stakeholders and support teams.</li>
+                <li data-i18n="u.li1">Built the company website <em>upestagios.com.br</em> from scratch and end-to-end — owning the full stack: UI/UX design, front-end, back-end, database modelling, deployment, and ongoing maintenance.</li>
+                <li data-i18n="u.li2">Architected the site as a full-stack Next.js 16 + React 19 + TypeScript application styled with Tailwind CSS and shadcn/ui, backed by a Neon serverless PostgreSQL database.</li>
+                <li data-i18n="u.li3">Implemented Upstash Redis rate limiting, Zod schema validation, Nodemailer e-mail flows, Google APIs integration, and PDF/DOCX document parsing.</li>
+                <li data-i18n="u.li4">Containerised the application with Docker and docker-compose (including a production compose file) for reproducible builds and deployment.</li>
+                <li data-i18n="u.li5">Developed CRM workflow automations with spreadsheets, forms, and custom scripts to reduce manual work.</li>
+                <li data-i18n="u.li6">Implemented reporting tools and dashboards for operational KPIs, improving visibility and decision-making.</li>
+                <li data-i18n="u.li7">Managed database updates, migrations, and validation routines for user and project data.</li>
+                <li data-i18n="u.li8">Produced technical documentation, runbooks, and handoff materials for stakeholders and support teams.</li>
               </ul>
-              <p class="topics"><span>Technologies:</span> Next.js 16 · React 19 · TypeScript · Tailwind CSS · shadcn/ui · Neon PostgreSQL · Upstash Redis · Zod · Nodemailer · Google APIs · Docker · REST APIs</p>
+              <p class="topics" data-i18n="u.tech"><span>Technologies:</span> Next.js 16 · React 19 · TypeScript · Tailwind CSS · shadcn/ui · Neon PostgreSQL · Upstash Redis · Zod · Nodemailer · Google APIs · Docker · REST APIs</p>
             </div>
           </div>
-          <a href="#" class="back-link" onclick="navigateToPage(event, 'home')">← Return to the Front Page</a>
+          <a href="#" class="back-link" onclick="navigateToPage(event, 'home')" data-i18n="back">← Return to the Front Page</a>
         </article>
       </div>
 
       <!-- ═══ CIIA DETAIL ═══ -->
       <div class="page" id="page-ciia">
         <article class="lead-story">
-          <p class="kicker">Career Dossier</p>
-          <h2 class="headline">CIIA — The Full Account</h2>
-          <p class="byline">On AI &amp; voice technology for public security</p>
+          <p class="kicker" data-i18n="dossier">Career Dossier</p>
+          <h2 class="headline" data-i18n="c.head">CIIA — The Full Account</h2>
+          <p class="byline" data-i18n="c.byline">On AI &amp; voice technology for public security</p>
           <div class="ornament">⁂</div>
           <div class="detail-grid">
             <figure class="portrait portrait-sm">
@@ -722,43 +943,43 @@
                   <span class="vignette"></span>
                 </div>
               </div>
-              <figcaption>The correspondent, hard at work.</figcaption>
+              <figcaption data-i18n="corr">The correspondent, hard at work.</figcaption>
             </figure>
             <div class="detail-body">
-              <p class="exp-meta">AI Solutions Developer — Public Security · CIIA · Jun 2025 – Feb 2026</p>
-              <p>Delivered AI and voice-technology solutions for public-security use cases. Core responsibilities included:</p>
+              <p class="exp-meta" data-i18n="c.meta">AI Solutions Developer — Public Security · CIIA · Jun 2025 – Feb 2026</p>
+              <p data-i18n="c.intro">Delivered AI and voice-technology solutions for public-security use cases. Core responsibilities included:</p>
               <ul class="story-list">
-                <li>Designed and deployed low-latency ASR + TTS pipelines using Whisper, Sherpa-ONNX, and Piper for field-ready voice applications.</li>
-                <li>Built Flutter demos and React dashboards for end-to-end validation of voice assistants and operational workflows.</li>
-                <li>Implemented LLM agents with LangChain and Supabase for context-aware assistants and secure retrieval.</li>
-                <li>Optimised model inference and deployment using Docker, GPU acceleration, and efficient prompt engineering.</li>
-                <li>Validated system reliability with data-driven testing, logging, and user-feedback loops.</li>
+                <li data-i18n="c.li1">Designed and deployed low-latency ASR + TTS pipelines using Whisper, Sherpa-ONNX, and Piper for field-ready voice applications.</li>
+                <li data-i18n="c.li2">Built Flutter demos and React dashboards for end-to-end validation of voice assistants and operational workflows.</li>
+                <li data-i18n="c.li3">Implemented LLM agents with LangChain and Supabase for context-aware assistants and secure retrieval.</li>
+                <li data-i18n="c.li4">Optimised model inference and deployment using Docker, GPU acceleration, and efficient prompt engineering.</li>
+                <li data-i18n="c.li5">Validated system reliability with data-driven testing, logging, and user-feedback loops.</li>
               </ul>
-              <p class="topics"><span>Technologies:</span> Python · PyTorch · Flutter/Dart · React · Chainlit · Supabase · LangChain · Docker · Whisper · Sherpa-ONNX · Piper</p>
+              <p class="topics" data-i18n="c.tech"><span>Technologies:</span> Python · PyTorch · Flutter/Dart · React · Chainlit · Supabase · LangChain · Docker · Whisper · Sherpa-ONNX · Piper</p>
             </div>
           </div>
-          <a href="#" class="back-link" onclick="navigateToPage(event, 'home')">← Return to the Front Page</a>
+          <a href="#" class="back-link" onclick="navigateToPage(event, 'home')" data-i18n="back">← Return to the Front Page</a>
         </article>
       </div>
 
       <!-- ═══ ABOUT ═══ -->
       <div class="page" id="page-about">
         <article class="lead-story">
-          <p class="kicker">Who's Who in the Wizarding World of Tech</p>
-          <h2 class="headline">About the Author</h2>
-          <p class="byline">An intimate profile, in his own words</p>
+          <p class="kicker" data-i18n="a.kicker">Who's Who in the Wizarding World of Tech</p>
+          <h2 class="headline" data-i18n="a.head">About the Author</h2>
+          <p class="byline" data-i18n="a.byline">An intimate profile, in his own words</p>
           <div class="ornament">⁂</div>
           <div class="about-columns">
-            <p class="lead drop">You can call me Gabriel. Online, I go by ghostopw. I'm an AI Engineer and Computer Engineering student at IESB, based in Brasília, Brazil.</p>
-            <p>At CIIA (Centro Integrado de Inteligência Artificial) I build AI solutions for public security — from voice pipelines with ASR and TTS to conversational assistants powered by LLMs.</p>
-            <p>Before that, I spent nearly two years at Outlier AI, training and evaluating language models, automating business processes, and extracting insights with Python, SQL, and Power BI.</p>
-            <p class="about-sub">What drives me</p>
-            <p>I enjoy the full cycle: understanding the problem, prototyping fast, iterating with real data, and shipping something that works in production. I move comfortably between AI, web development, and infrastructure — Docker, Flutter, React, FastAPI, and whatever else the project demands.</p>
-            <p class="about-sub">On the academic side</p>
-            <p>I authored a paper on the Minimax algorithm applied to board games, bridging classical heuristic search with modern approaches like AlphaZero. I also took first place at the Big Data Hackathon with an end-to-end predictive-modelling solution.</p>
-            <p class="about-sub">Off the keyboard</p>
-            <p>I'm into PC building, gaming, barbecue, and experimenting with cocktail recipes. Born and raised in Brasília.</p>
-            <p class="contact-line">Owl post: <a href="mailto:gabriel.guyma@gmail.com">gabriel.guyma@gmail.com</a></p>
+            <p class="lead drop" data-i18n="a.p1">You can call me Gabriel. Online, I go by ghostopw. I'm an AI Engineer and Computer Engineering student at IESB, based in Brasília, Brazil.</p>
+            <p data-i18n="a.p2">At CIIA (Centro Integrado de Inteligência Artificial) I build AI solutions for public security — from voice pipelines with ASR and TTS to conversational assistants powered by LLMs.</p>
+            <p data-i18n="a.p3">Before that, I spent nearly two years at Outlier AI, training and evaluating language models, automating business processes, and extracting insights with Python, SQL, and Power BI.</p>
+            <p class="about-sub" data-i18n="a.s1">What drives me</p>
+            <p data-i18n="a.p4">I enjoy the full cycle: understanding the problem, prototyping fast, iterating with real data, and shipping something that works in production. I move comfortably between AI, web development, and infrastructure — Docker, Flutter, React, FastAPI, and whatever else the project demands.</p>
+            <p class="about-sub" data-i18n="a.s2">On the academic side</p>
+            <p data-i18n="a.p5">I authored a paper on the Minimax algorithm applied to board games, bridging classical heuristic search with modern approaches like AlphaZero. I also took first place at the Big Data Hackathon with an end-to-end predictive-modelling solution.</p>
+            <p class="about-sub" data-i18n="a.s3">Off the keyboard</p>
+            <p data-i18n="a.p6">I'm into PC building, gaming, barbecue, and experimenting with cocktail recipes. Born and raised in Brasília.</p>
+            <p class="contact-line" data-i18n="a.contact">Owl post: <a href="mailto:gabriel.guyma@gmail.com">gabriel.guyma@gmail.com</a></p>
           </div>
         </article>
       </div>
@@ -766,17 +987,17 @@
       <!-- ═══ PROJECTS ═══ -->
       <div class="page" id="page-projects">
         <article class="lead-story">
-          <p class="kicker">The Notice Board</p>
-          <h2 class="headline">Notable Works &amp; Enchantments</h2>
-          <p class="byline">A survey of the author's most celebrated creations</p>
+          <p class="kicker" data-i18n="p.kicker">The Notice Board</p>
+          <h2 class="headline" data-i18n="p.head">Notable Works &amp; Enchantments</h2>
+          <p class="byline" data-i18n="p.byline">A survey of the author's most celebrated creations</p>
           <div class="ornament">⁂</div>
           <div class="clippings">
 
             <div class="clipping">
               <div class="clipping-title"><a href="https://upestagios.com.br" target="_blank">upestagios.com.br — Corporate Website</a></div>
-              <div class="clipping-desc">Designed and built the company's complete website end-to-end — a full-stack Next.js 16 + React 19 application styled with Tailwind CSS and shadcn/ui, backed by a Neon serverless PostgreSQL database, with Upstash Redis rate limiting, Zod validation, Nodemailer e-mail flows, Google APIs, PDF/DOCX parsing, and Docker containerisation for production.</div>
+              <div class="clipping-desc" data-i18n="p.d1">Designed and built the company's complete website end-to-end — a full-stack Next.js 16 + React 19 application styled with Tailwind CSS and shadcn/ui, backed by a Neon serverless PostgreSQL database, with Upstash Redis rate limiting, Zod validation, Nodemailer e-mail flows, Google APIs, PDF/DOCX parsing, and Docker containerisation for production.</div>
               <div class="stamps">
-                <span class="stamp award">Production</span>
+                <span class="stamp award" data-i18n="st.prod">Production</span>
                 <span class="stamp">Next.js 16</span>
                 <span class="stamp">React 19</span>
                 <span class="stamp">TypeScript</span>
@@ -788,9 +1009,9 @@
 
             <div class="clipping">
               <div class="clipping-title"><a href="https://up-crm-jet.vercel.app" target="_blank">Banc_up CRM — Talent Bank</a></div>
-              <div class="clipping-desc">Production-ready CRM and talent bank to organise candidates, validate profiles, manage shortlists, and support recruiting workflows. Runs on Vercel with a PostgreSQL/Supabase database via Prisma, NextAuth authentication, and AI-assisted candidate analysis using Gemini. <a href="https://github.com/ghostopw/up-crm" target="_blank">Repository</a> · <a href="https://up-crm-jet.vercel.app" target="_blank">Live</a></div>
+              <div class="clipping-desc" data-i18n="p.d2">Production-ready CRM and talent bank to organise candidates, validate profiles, manage shortlists, and support recruiting workflows. Runs on Vercel with a PostgreSQL/Supabase database via Prisma, NextAuth authentication, and AI-assisted candidate analysis using Gemini. <a href="https://github.com/ghostopw/up-crm" target="_blank">Repository</a> · <a href="https://up-crm-jet.vercel.app" target="_blank">Live</a></div>
               <div class="stamps">
-                <span class="stamp award">Production</span>
+                <span class="stamp award" data-i18n="st.prod">Production</span>
                 <span class="stamp">Next.js</span>
                 <span class="stamp">Prisma</span>
                 <span class="stamp">Supabase</span>
@@ -801,9 +1022,9 @@
 
             <div class="clipping">
               <div class="clipping-title"><a href="https://github.com/ghostopw/ds_bigdata_hackathon" target="_blank">Hackathon Big Data</a></div>
-              <div class="clipping-desc">End-to-end solution with a complete data pipeline and predictive modelling. First-place winner at the Big Data Hackathon.</div>
+              <div class="clipping-desc" data-i18n="p.d3">End-to-end solution with a complete data pipeline and predictive modelling. First-place winner at the Big Data Hackathon.</div>
               <div class="stamps">
-                <span class="stamp award">🏆 1st Place</span>
+                <span class="stamp award" data-i18n="st.first">🏆 1st Place</span>
                 <span class="stamp">Python</span>
                 <span class="stamp">Data Science</span>
               </div>
@@ -811,7 +1032,7 @@
 
             <div class="clipping">
               <div class="clipping-title"><a href="https://github.com/ghostopw/langchain-chat" target="_blank">LangChain Chat</a></div>
-              <div class="clipping-desc">Chat application using FastAPI, LangChain, and the OpenAI API. Includes session-based memory, tool calling, and a lightweight front-end interface.</div>
+              <div class="clipping-desc" data-i18n="p.d4">Chat application using FastAPI, LangChain, and the OpenAI API. Includes session-based memory, tool calling, and a lightweight front-end interface.</div>
               <div class="stamps">
                 <span class="stamp">Python</span>
                 <span class="stamp">FastAPI</span>
@@ -821,7 +1042,7 @@
 
             <div class="clipping">
               <div class="clipping-title"><a href="https://github.com/ghostopw/agente-rag-utilizando-pinecone" target="_blank">Agente RAG + Pinecone</a></div>
-              <div class="clipping-desc">Intelligent agent with Retrieval-Augmented Generation using Pinecone as the vector store for context retrieval.</div>
+              <div class="clipping-desc" data-i18n="p.d5">Intelligent agent with Retrieval-Augmented Generation using Pinecone as the vector store for context retrieval.</div>
               <div class="stamps">
                 <span class="stamp">Python</span>
                 <span class="stamp">RAG</span>
@@ -831,7 +1052,7 @@
 
             <div class="clipping">
               <div class="clipping-title">Chatbot Multimodal</div>
-              <div class="clipping-desc">RAG-powered agent with a Node/Express backend and Next.js front-end. Supports multiple input modalities.</div>
+              <div class="clipping-desc" data-i18n="p.d6">RAG-powered agent with a Node/Express backend and Next.js front-end. Supports multiple input modalities.</div>
               <div class="stamps">
                 <span class="stamp">Node.js</span>
                 <span class="stamp">Next.js</span>
@@ -841,17 +1062,17 @@
 
             <div class="clipping">
               <div class="clipping-title">NexusLearn</div>
-              <div class="clipping-desc">Educational platform with dashboards and custom LLM integration for adaptive learning experiences.</div>
+              <div class="clipping-desc" data-i18n="p.d7">Educational platform with dashboards and custom LLM integration for adaptive learning experiences.</div>
               <div class="stamps">
                 <span class="stamp">React</span>
                 <span class="stamp">LLMs</span>
-                <span class="stamp">Education</span>
+                <span class="stamp" data-i18n="st.edu">Education</span>
               </div>
             </div>
 
             <div class="clipping">
-              <div class="clipping-title"><a href="https://github.com/ghostopw/ghostopw.github.io" target="_blank">This Very Portfolio</a></div>
-              <div class="clipping-desc">The personal portfolio you are reading now — styled as a wizarding newspaper — hosted on GitHub Pages.</div>
+              <div class="clipping-title"><a href="https://github.com/ghostopw/ghostopw.github.io" target="_blank" data-i18n="p.t8">This Very Portfolio</a></div>
+              <div class="clipping-desc" data-i18n="p.d8">The personal portfolio you are reading now — styled as a wizarding newspaper — hosted on GitHub Pages.</div>
               <div class="stamps">
                 <span class="stamp">HTML</span>
                 <span class="stamp">CSS</span>
@@ -866,9 +1087,9 @@
       <!-- ═══ CERTIFICATIONS ═══ -->
       <div class="page" id="page-certs">
         <article class="lead-story">
-          <p class="kicker">Honours &amp; Distinctions</p>
-          <h2 class="headline">Accolades &amp; Credentials</h2>
-          <p class="byline">Certifications duly awarded to the author</p>
+          <p class="kicker" data-i18n="ce.kicker">Honours &amp; Distinctions</p>
+          <h2 class="headline" data-i18n="ce.head">Accolades &amp; Credentials</h2>
+          <p class="byline" data-i18n="ce.byline">Certifications duly awarded to the author</p>
           <div class="ornament">⁂</div>
           <ul class="index-list">
             <li><span class="entry">Google AI Essentials</span><span class="leader"></span><span class="year">2025</span></li>
@@ -885,34 +1106,34 @@
       <!-- ═══ SKILLS / SPELLBOOK ═══ -->
       <div class="page" id="page-skills">
         <article class="lead-story">
-          <p class="kicker">Grimoire of the Trade</p>
-          <h2 class="headline">The Author's Spellbook</h2>
-          <p class="byline">Charms, incantations &amp; technologies at his command</p>
+          <p class="kicker" data-i18n="s.kicker">Grimoire of the Trade</p>
+          <h2 class="headline" data-i18n="s.head">The Author's Spellbook</h2>
+          <p class="byline" data-i18n="s.byline">Charms, incantations &amp; technologies at his command</p>
           <div class="ornament">⁂</div>
           <div class="spellbook">
             <section class="spell-group">
-              <div class="spell-title">AI &amp; Language Models</div>
+              <div class="spell-title" data-i18n="s.g1">AI &amp; Language Models</div>
               <div class="spell-list">Intelligent Agents · Prompt Engineering · RAG · LangChain · N8N · Machine Learning · Deep Learning · Computer Vision · PyTorch</div>
             </section>
             <section class="spell-group">
-              <div class="spell-title">Development</div>
+              <div class="spell-title" data-i18n="s.g2">Development</div>
               <div class="spell-list">Python · JavaScript · Node.js / Express · React / Next.js · Flutter / Dart · HTML / CSS · FastAPI</div>
             </section>
             <section class="spell-group">
-              <div class="spell-title">Automation &amp; Integration</div>
+              <div class="spell-title" data-i18n="s.g3">Automation &amp; Integration</div>
               <div class="spell-list">REST APIs · Webhooks · Data Pipelines · SQL · Power BI</div>
             </section>
             <section class="spell-group">
-              <div class="spell-title">Infrastructure &amp; DevOps</div>
+              <div class="spell-title" data-i18n="s.g4">Infrastructure &amp; DevOps</div>
               <div class="spell-list">Docker · Git · GPU Optimisation · Supabase / Postgres · Pinecone · AWS (Cloud)</div>
             </section>
             <section class="spell-group">
-              <div class="spell-title">Voice &amp; Audio</div>
+              <div class="spell-title" data-i18n="s.g5">Voice &amp; Audio</div>
               <div class="spell-list">Whisper · Sherpa-ONNX · Piper TTS · ASR</div>
             </section>
             <section class="spell-group">
-              <div class="spell-title">Tongues Spoken</div>
-              <div class="spell-list">Portuguese (Native) · English (Professional) · Spanish (Basic) · Italian (Basic)</div>
+              <div class="spell-title" data-i18n="s.g6">Tongues Spoken</div>
+              <div class="spell-list" data-i18n="s.lang">Portuguese (Native) · English (Professional) · Spanish (Basic) · Italian (Basic)</div>
             </section>
           </div>
         </article>
@@ -923,20 +1144,20 @@
     <!-- ═══ FOOTER ═══ -->
     <footer class="paper-footer">
       <div class="ornament">❦</div>
-      <p>Printed &amp; bound in Brasília, Distrito Federal — Brazil.</p>
-      <p class="footer-links">
+      <p data-i18n="f.printed">Printed &amp; bound in Brasília, Distrito Federal — Brazil.</p>
+      <p class="footer-links" data-i18n="f.links">
         <a href="https://github.com/ghostopw" target="_blank">The Owlery · GitHub</a> ·
         <a href="https://www.linkedin.com/in/gabriel-guimaraes-a37b43268" target="_blank">LinkedIn</a> ·
         <a href="mailto:gabriel.guyma@gmail.com">Owl Post</a>
       </p>
-      <p class="colophon">© MMXXVI The Daily Prophet — Gabriel Guimarães. No part of this publication may be reproduced without the consent of its author. Mischief managed.</p>
+      <p class="colophon" data-i18n="f.colophon">© MMXXVI The Daily Prophet — Gabriel Guimarães. No part of this publication may be reproduced without the consent of its author. Mischief managed.</p>
     </footer>
 
   </div>
 </div>
 
 <script>
-  // Section navigation
+  // ─── Section navigation ───
   document.querySelectorAll('.sections-bar a').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
@@ -944,7 +1165,6 @@
     });
   });
 
-  // Experience articles → detail pages
   document.querySelectorAll('.exp-article[data-detail-page]').forEach(card => {
     card.addEventListener('click', () => {
       navigateToPage(null, card.dataset.detailPage);
@@ -952,7 +1172,10 @@
   });
 
   function navigateToPage(event, pageId) {
-    if (event) event.preventDefault();
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
 
     document.querySelectorAll('.sections-bar a').forEach(l => l.classList.remove('active'));
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -964,6 +1187,196 @@
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  // ─── Internationalisation (EN is the HTML source; PT swapped in) ───
+  const T_PT = {
+    'm.est': `Fundado em MMXXIII`,
+    'm.price': `Preço: Cinco Galeões`,
+    'm.title': `O Profeta Diário`,
+    'm.motto': `Despachos bruxos sobre Inteligência Artificial, Automação &amp; Feitiçaria de Software`,
+    'm.city': `Brasília · Brasil`,
+    'm.date': `Sábado, 4 de julho de 2026`,
+    'm.edition': `Edição Especial`,
+
+    'nav.home': `Capa`,
+    'nav.news': `Últimas Notícias`,
+    'nav.about': `Sobre o Autor`,
+    'nav.projects': `Obras Notáveis`,
+    'nav.certs': `Honrarias`,
+    'nav.skills': `Grimório`,
+
+    'h.kicker': `Capa · Reportagem Exclusiva`,
+    'h.subhead': `Engenheiro de IA · Estudante de Engenharia da Computação · Construtor de Sistemas Inteligentes`,
+    'h.byline': `Por Nosso Correspondente de Tecnologia — Brasília, Distrito Federal`,
+    'h.p1': `Estudante de Engenharia da Computação no IESB e Engenheiro de IA no CIIA — Centro Integrado de Inteligência Artificial, construindo soluções de IA para a segurança pública. Experiência prática com LLMs, RAG, automação de processos e desenvolvimento full-stack. Anteriormente atuou na Outlier AI como programador e treinador de modelos de linguagem.`,
+    'h.p2': `Autor de um artigo sobre o algoritmo Minimax aplicado a jogos de tabuleiro, explorando sua relação com técnicas modernas de IA como o AlphaZero. Movido por resolver problemas complexos de código e infraestrutura — e pelo eventual prazo impossível.`,
+    'h.topics': `<span>Arquivado em:</span> Python · LLMs · RAG · MLOps · Visão Computacional · Docker · Flutter · React`,
+    'h.extra': `Extra · Nas Manchetes`,
+    'h.extrahead': `Bruxo Local Conquista o Primeiro Lugar no Hackathon de Big Data`,
+    'h.extrasub': `Jurados enfeitiçados por um pipeline de dados de ponta a ponta — leia a reportagem completa em Últimas Notícias ›`,
+    'h.career': `Carreira &amp; Ofícios`,
+    'e1.title': `Estagiário de Tecnologia da Informação`,
+    'e1.meta': `Up Business LTDA — Up Estágio · Mai 2026 – Atual`,
+    'e1.body': `Entregou soluções de automação, dashboards internos e ferramentas web para otimização de processos e suporte a clientes. Liderou melhorias no CRM, automações de fluxo de trabalho e sistemas de relatórios — e construiu o site da empresa <em>upestagios.com.br</em> do zero.`,
+    'readmore': `Leia a matéria completa ›`,
+    'e2.title': `Desenvolvedor de Soluções de IA — Segurança Pública`,
+    'e2.meta': `CIIA — Centro Integrado de Inteligência Artificial · Jun 2025 – Fev 2026`,
+    'e2.body': `Prototipou pipelines de voz de baixa latência (ASR + TTS) para ambientes reais, integrando Whisper, Sherpa-ONNX e Piper. Construiu chatbots movidos a LLMs e demos em Flutter com recuperação de contexto e respostas iterativas.`,
+    'e3.title': `Programador de IA &amp; Treinador de LLMs`,
+    'e3.meta': `Outlier AI · Out 2023 – Jun 2025`,
+    'e3.body': `Desenvolvimento e treinamento de modelos de linguagem. Automação de processos de negócio com integração de sistemas de IA. Análise de dados com Python, SQL e Power BI para gerar dashboards e insights acionáveis.`,
+    'h.caption': `O Sr. Guimarães em sua bancada de trabalho em Brasília. <span class="cap-note">(A fotografia, como é costume no Profeta, recusa-se a ficar parada.)</span>`,
+    'h.edu': `Escolas de Formação`,
+    'edu.degree': `Bacharelado em Engenharia da Computação`,
+    'edu.p1': `Jan 2025 — Jul 2027 (em curso)`,
+    'h.stop': `Últimas do Prelo — Despachos Recentes`,
+    'd1.t': `Adicionado o CRM Banc_up às obras em destaque`,
+    'd1.m': `Mai 2026 · Projeto`,
+    'd2.t': `Ingressa no CIIA como Engenheiro de IA`,
+    'd2.m': `Jun 2025 · Trabalho`,
+    'd3.t': `Publicado artigo sobre Minimax &amp; AlphaZero`,
+    'd3.m': `2025 · Pesquisa`,
+    'd4.t': `Primeiro lugar — Hackathon de Big Data`,
+    'd4.m': `2025 · Conquista — leia a matéria ›`,
+
+    'n.kicker': `Extra! Extra! · Reportagem Especial`,
+    'n.head': `Bruxo Local Conquista o Primeiro Lugar<br>no Hackathon de Big Data`,
+    'n.sub': `Um pipeline de dados de ponta a ponta deixa os jurados enfeitiçados — rivais ainda consultam suas bolas de cristal`,
+    'n.byline': `Por Nosso Correspondente Especial — Brasília, 2025`,
+    'n.p1': `<span class="dateline">Brasília</span> — Em uma competição que reuniu algumas das mentes jovens mais promissoras da ciência de dados, <em>Gabriel Guimarães</em> — conhecido em certos círculos como ghostopw — conquistou o primeiro lugar no Hackathon de Big Data, apresentando uma solução completa de ponta a ponta que levou dados brutos até previsões funcionais.`,
+    'n.p2': `Sob a pressão impiedosa do relógio do hackathon, o jovem engenheiro montou um pipeline de dados completo — ingestão, limpeza e engenharia de features — e o coroou com modelos preditivos que superaram os concorrentes. Testemunhas confirmam que nenhum Vira-Tempo foi utilizado: apenas Python, metodologia sólida e uma quantidade desarrazoada de café.`,
+    'n.p3': `O trabalho vencedor permanece aberto ao escrutínio público no <a href="https://github.com/ghostopw/ds_bigdata_hackathon" target="_blank">repositório do próprio campeão</a> — um espécime completo do ofício da ciência de dados: pipeline, modelagem e avaliação, de ponta a ponta.`,
+    'n.quote': `“Nenhum feitiço secreto foi lançado — apenas um pipeline sólido e iteração incansável.”
+            <span class="attrib">— o campeão, quando indagado sobre seu método</span>`,
+    'n.other': `Outros Despachos`,
+    'b1.t': `Publicado Tratado sobre Minimax &amp; AlphaZero`,
+    'b1.m': `2025 · Pesquisa`,
+    'b1.p': `O artigo do autor sobre o algoritmo Minimax aplicado a jogos de tabuleiro conecta a busca heurística clássica a abordagens modernas como o AlphaZero.`,
+    'b2.t': `Guimarães Ingressa no CIIA para Encantar a Segurança Pública`,
+    'b2.m': `Jun 2025 · Trabalho`,
+    'b2.p': `Pipelines de voz (ASR + TTS) e assistentes movidos a LLMs entram em serviço ativo. <span class="read-more" onclick="navigateToPage(event, 'ciia')">Dossiê completo ›</span>`,
+    'b3.t': `upestagios.com.br Conjurado do Zero`,
+    'b3.m': `Mai 2026 · Ofício`,
+    'b3.p': `Um site corporativo construído de ponta a ponta — Next.js 16, Neon PostgreSQL e Docker entre os ingredientes. <span class="read-more" onclick="navigateToPage(event, 'up-estagio')">Dossiê completo ›</span>`,
+    'b4.t': `Este Jornal Renasce em Tipografia Bruxa`,
+    'b4.m': `Jul 2026 · A Imprensa`,
+    'b4.p': `O portfólio do autor abandona os pixels ordinários e adota a honrosa tipografia que você lê agora.`,
+    'back': `← Voltar à Capa`,
+
+    'dossier': `Dossiê de Carreira`,
+    'corr': `O correspondente, em pleno ofício.`,
+    'u.head': `Up Estágio — O Relato Completo`,
+    'u.byline': `Um relatório detalhado sobre a atuação de G. Guimarães`,
+    'u.meta': `Estagiário de Tecnologia da Informação · Up Business LTDA — Up Estágio · Mai 2026 – Atual`,
+    'u.intro': `Construiu soluções técnicas de automação e integração de dados para equipes internas e operações de clientes. Principais contribuições:`,
+    'u.li1': `Construiu o site da empresa <em>upestagios.com.br</em> do zero e de ponta a ponta — responsável por toda a stack: design de UI/UX, front-end, back-end, modelagem de banco de dados, deploy e manutenção contínua.`,
+    'u.li2': `Arquitetou o site como uma aplicação full-stack Next.js 16 + React 19 + TypeScript estilizada com Tailwind CSS e shadcn/ui, apoiada em um banco PostgreSQL serverless da Neon.`,
+    'u.li3': `Implementou rate limiting com Upstash Redis, validação de esquemas com Zod, fluxos de e-mail com Nodemailer, integração com Google APIs e análise de documentos PDF/DOCX.`,
+    'u.li4': `Conteinerizou a aplicação com Docker e docker-compose (incluindo um compose de produção) para builds e deploys reproduzíveis.`,
+    'u.li5': `Desenvolveu automações de fluxo de trabalho no CRM com planilhas, formulários e scripts personalizados para reduzir o trabalho manual.`,
+    'u.li6': `Implementou ferramentas de relatório e dashboards de KPIs operacionais, melhorando a visibilidade e a tomada de decisão.`,
+    'u.li7': `Gerenciou atualizações de banco de dados, migrações e rotinas de validação para dados de usuários e projetos.`,
+    'u.li8': `Produziu documentação técnica, runbooks e materiais de transição para stakeholders e equipes de suporte.`,
+    'u.tech': `<span>Tecnologias:</span> Next.js 16 · React 19 · TypeScript · Tailwind CSS · shadcn/ui · Neon PostgreSQL · Upstash Redis · Zod · Nodemailer · Google APIs · Docker · REST APIs`,
+
+    'c.head': `CIIA — O Relato Completo`,
+    'c.byline': `Sobre IA &amp; tecnologia de voz para a segurança pública`,
+    'c.meta': `Desenvolvedor de Soluções de IA — Segurança Pública · CIIA · Jun 2025 – Fev 2026`,
+    'c.intro': `Entregou soluções de IA e tecnologia de voz para casos de uso em segurança pública. Responsabilidades principais:`,
+    'c.li1': `Projetou e implantou pipelines ASR + TTS de baixa latência usando Whisper, Sherpa-ONNX e Piper para aplicações de voz prontas para campo.`,
+    'c.li2': `Construiu demos em Flutter e dashboards em React para validação de ponta a ponta de assistentes de voz e fluxos operacionais.`,
+    'c.li3': `Implementou agentes LLM com LangChain e Supabase para assistentes sensíveis ao contexto e recuperação segura de informações.`,
+    'c.li4': `Otimizou inferência e implantação de modelos usando Docker, aceleração por GPU e engenharia de prompts eficiente.`,
+    'c.li5': `Validou a confiabilidade do sistema com testes orientados a dados, logging e ciclos de feedback de usuários.`,
+    'c.tech': `<span>Tecnologias:</span> Python · PyTorch · Flutter/Dart · React · Chainlit · Supabase · LangChain · Docker · Whisper · Sherpa-ONNX · Piper`,
+
+    'a.kicker': `Quem é Quem no Mundo Bruxo da Tecnologia`,
+    'a.head': `Sobre o Autor`,
+    'a.byline': `Um perfil íntimo, em suas próprias palavras`,
+    'a.p1': `Pode me chamar de Gabriel. Na internet, atendo por ghostopw. Sou Engenheiro de IA e estudante de Engenharia da Computação no IESB, em Brasília.`,
+    'a.p2': `No CIIA (Centro Integrado de Inteligência Artificial) construo soluções de IA para a segurança pública — de pipelines de voz com ASR e TTS a assistentes conversacionais movidos a LLMs.`,
+    'a.p3': `Antes disso, passei quase dois anos na Outlier AI, treinando e avaliando modelos de linguagem, automatizando processos de negócio e extraindo insights com Python, SQL e Power BI.`,
+    'a.s1': `O que me move`,
+    'a.p4': `Gosto do ciclo completo: entender o problema, prototipar rápido, iterar com dados reais e entregar algo que funcione em produção. Transito com naturalidade entre IA, desenvolvimento web e infraestrutura — Docker, Flutter, React, FastAPI e o que mais o projeto exigir.`,
+    'a.s2': `No lado acadêmico`,
+    'a.p5': `Sou autor de um artigo sobre o algoritmo Minimax aplicado a jogos de tabuleiro, ligando a busca heurística clássica a abordagens modernas como o AlphaZero. Também conquistei o primeiro lugar no Hackathon de Big Data com uma solução de modelagem preditiva de ponta a ponta.`,
+    'a.s3': `Longe do teclado`,
+    'a.p6': `Curto montar PCs, jogar, churrasco e experimentar receitas de coquetéis. Nascido e criado em Brasília.`,
+    'a.contact': `Correio-coruja: <a href="mailto:gabriel.guyma@gmail.com">gabriel.guyma@gmail.com</a>`,
+
+    'p.kicker': `O Quadro de Avisos`,
+    'p.head': `Obras Notáveis &amp; Encantamentos`,
+    'p.byline': `Um levantamento das criações mais celebradas do autor`,
+    'p.d1': `Projetou e construiu o site completo da empresa de ponta a ponta — uma aplicação full-stack Next.js 16 + React 19 estilizada com Tailwind CSS e shadcn/ui, apoiada em PostgreSQL serverless da Neon, com rate limiting via Upstash Redis, validação com Zod, e-mails com Nodemailer, Google APIs, análise de PDF/DOCX e conteinerização com Docker para produção.`,
+    'p.d2': `CRM e banco de talentos pronto para produção, para organizar candidatos, validar perfis, gerenciar shortlists e apoiar fluxos de recrutamento. Roda na Vercel com banco PostgreSQL/Supabase via Prisma, autenticação NextAuth e análise de candidatos assistida por IA com Gemini. <a href="https://github.com/ghostopw/up-crm" target="_blank">Repositório</a> · <a href="https://up-crm-jet.vercel.app" target="_blank">No ar</a>`,
+    'p.d3': `Solução de ponta a ponta com pipeline de dados completo e modelagem preditiva. Vencedora do primeiro lugar no Hackathon de Big Data.`,
+    'p.d4': `Aplicação de chat com FastAPI, LangChain e a API da OpenAI. Inclui memória por sessão, tool calling e uma interface front-end leve.`,
+    'p.d5': `Agente inteligente com Retrieval-Augmented Generation usando Pinecone como vector store para recuperação de contexto.`,
+    'p.d6': `Agente com RAG, backend Node/Express e front-end Next.js. Suporta múltiplas modalidades de entrada.`,
+    'p.d7': `Plataforma educacional com dashboards e integração customizada de LLMs para experiências de aprendizado adaptativo.`,
+    'p.t8': `Este Exato Portfólio`,
+    'p.d8': `O portfólio pessoal que você lê agora — diagramado como um jornal bruxo — hospedado no GitHub Pages.`,
+    'st.prod': `Produção`,
+    'st.first': `🏆 1º Lugar`,
+    'st.edu': `Educação`,
+
+    'ce.kicker': `Honras &amp; Distinções`,
+    'ce.head': `Honrarias &amp; Credenciais`,
+    'ce.byline': `Certificações devidamente conferidas ao autor`,
+
+    's.kicker': `Grimório do Ofício`,
+    's.head': `O Grimório do Autor`,
+    's.byline': `Feitiços, encantamentos &amp; tecnologias sob seu comando`,
+    's.g1': `IA &amp; Modelos de Linguagem`,
+    's.g2': `Desenvolvimento`,
+    's.g3': `Automação &amp; Integração`,
+    's.g4': `Infraestrutura &amp; DevOps`,
+    's.g5': `Voz &amp; Áudio`,
+    's.g6': `Línguas Faladas`,
+    's.lang': `Português (Nativo) · Inglês (Profissional) · Espanhol (Básico) · Italiano (Básico)`,
+
+    'f.printed': `Impresso &amp; encadernado em Brasília, Distrito Federal — Brasil.`,
+    'f.links': `<a href="https://github.com/ghostopw" target="_blank">O Corujal · GitHub</a> ·
+        <a href="https://www.linkedin.com/in/gabriel-guimaraes-a37b43268" target="_blank">LinkedIn</a> ·
+        <a href="mailto:gabriel.guyma@gmail.com">Correio-coruja</a>`,
+    'f.colophon': `© MMXXVI O Profeta Diário — Gabriel Guimarães. Nenhuma parte desta publicação pode ser reproduzida sem o consentimento de seu autor. Malfeito feito.`
+  };
+
+  const TITLES = {
+    en: 'The Daily Prophet — Gabriel Guimarães | AI Engineer',
+    pt: 'O Profeta Diário — Gabriel Guimarães | Engenheiro de IA'
+  };
+
+  const enCache = {};
+
+  function setLang(lang) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (!(key in enCache)) enCache[key] = el.innerHTML;
+      if (lang === 'pt' && T_PT[key] !== undefined) {
+        el.innerHTML = T_PT[key];
+      } else {
+        el.innerHTML = enCache[key];
+      }
+    });
+
+    document.documentElement.lang = (lang === 'pt') ? 'pt-BR' : 'en';
+    document.title = TITLES[lang] || TITLES.en;
+
+    document.querySelectorAll('.lang-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+
+    try { localStorage.setItem('prophet-lang', lang); } catch (e) { /* private mode */ }
+  }
+
+  // Initial language: saved preference, else browser language
+  let initialLang = 'en';
+  try { initialLang = localStorage.getItem('prophet-lang'); } catch (e) { /* private mode */ }
+  if (!initialLang) {
+    initialLang = ((navigator.language || 'en').toLowerCase().startsWith('pt')) ? 'pt' : 'en';
+  }
+  setLang(initialLang);
 </script>
 
 </body>
