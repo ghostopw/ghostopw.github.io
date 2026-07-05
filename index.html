@@ -642,6 +642,66 @@
     margin-bottom: 0.6rem;
   }
 
+  /* ─── APPRENTICE'S GUIDE ─── */
+  .guide-intro {
+    columns: 2;
+    column-gap: 2.6rem;
+    column-rule: 1px solid var(--ink-faint);
+    margin-bottom: 1.6rem;
+  }
+  .guide-intro p { font-size: 0.98rem; color: var(--ink-2); text-align: justify; hyphens: auto; }
+  .guide-path { max-width: 860px; margin: 0 auto; }
+  .stage {
+    border: 1px solid var(--rule);
+    background: rgba(255,255,255,0.15);
+    box-shadow: 2px 2px 0 rgba(43,33,23,0.12);
+    padding: 1.3rem 1.4rem 1.1rem;
+    margin: 1.2rem 0 1.8rem;
+    position: relative;
+  }
+  .stage-year {
+    position: absolute;
+    top: -0.78rem;
+    left: 1.1rem;
+    background: var(--paper);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.08rem 0.75rem;
+  }
+  .stage-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.35rem;
+    color: var(--ink);
+    margin: 0.25rem 0 0.4rem;
+  }
+  .stage-what { font-size: 0.95rem; color: var(--ink-2); margin-bottom: 0.8rem; }
+  .stage-train {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    margin: 0.9rem 0 0;
+    padding-top: 0.7rem;
+    border-top: 1px dotted var(--ink-faint);
+  }
+  .stage-train::before { content: '❦ '; color: var(--gold); }
+  .guide-cta {
+    text-align: center;
+    border: 3px double var(--rule);
+    background: rgba(255,255,255,0.18);
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1.4rem 1.6rem 1.1rem;
+  }
+  .guide-cta p { font-size: 0.98rem; color: var(--ink-2); margin-bottom: 0.4rem; }
+
   /* ─── CERTS / INDEX ─── */
   .index-list { list-style: none; max-width: 720px; margin: 0 auto; }
   .index-list li {
@@ -689,7 +749,7 @@
     .col-main { border-right: none; padding-right: 0; }
     .detail-grid { grid-template-columns: 1fr; }
     .portrait-sm { max-width: 260px; margin: 0 auto; }
-    .about-columns, .clippings, .spellbook, .news-columns { columns: 1; }
+    .about-columns, .clippings, .spellbook, .news-columns, .guide-intro { columns: 1; }
     .briefs-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 560px) {
@@ -744,6 +804,7 @@
       <a href="#" data-page="about" data-i18n="nav.about">About the Author</a>
       <a href="#" data-page="projects" data-i18n="nav.projects">Notable Works</a>
       <a href="#" data-page="writings" data-i18n="nav.writings">Writings</a>
+      <a href="#" data-page="guide" data-i18n="nav.guide">Learn AI</a>
       <a href="#" data-page="certs" data-i18n="nav.certs">Accolades</a>
       <a href="#" data-page="skills" data-i18n="nav.skills">Spellbook</a>
     </nav>
@@ -822,6 +883,12 @@
 
               <section class="sidebox">
                 <div class="sidebox-title" data-i18n="h.stop">Stop Press — Latest Dispatches</div>
+                <div class="dispatch clickable" onclick="navigateToPage(null, 'guide')">
+                  <div>
+                    <div class="dispatch-title" data-i18n="dg.t">A practical guide to starting in AI, published in this edition</div>
+                    <div class="dispatch-meta" data-i18n="dg.m">Jul 2026 · The Press — read it ›</div>
+                  </div>
+                </div>
                 <div class="dispatch clickable" onclick="navigateToPage(null, 'news')">
                   <div>
                     <div class="dispatch-title" data-i18n="d0.t">Approved for the PIBITI research scholarship — Vigia-Dengue project</div>
@@ -1146,6 +1213,109 @@
         </article>
       </div>
 
+      <!-- ═══ APPRENTICE'S GUIDE ═══ -->
+      <div class="page" id="page-guide">
+        <article class="lead-story">
+          <p class="kicker" data-i18n="g.kicker">Special Educational Supplement</p>
+          <h2 class="headline" data-i18n="g.head">A Practical Guide to Starting in Artificial Intelligence</h2>
+          <p class="subhead" data-i18n="g.sub">Where to begin, where to go next, and how to train: the whole territory, charted</p>
+          <p class="byline" data-i18n="g.byline">The path I walked and the map I wish I'd had, by G. Guimarães</p>
+          <div class="ornament">⁂</div>
+
+          <div class="guide-intro">
+            <p class="lead drop" data-i18n="g.i1">I didn't start with any special advantage. In 2023, between engineering classes, I took work at Outlier AI training and evaluating large language models, and I discovered that the fastest way into AI is to work near it daily, even at the edges. Nobody sends you an invitation. You simply begin.</p>
+            <p data-i18n="g.i2">From there, the path was unglamorous and effective: free courses (CS50's Introduction to AI, Google's AI Essentials, Python crash courses), small projects published openly on GitHub, a hackathon won with an end-to-end pipeline, a dataset published with a DOI and, in time, AI engineering work in public security and a research scholarship. Every step was small. The sum was not.</p>
+            <p data-i18n="g.i3">What follows is the map I wish someone had handed me on day one: the modern AI ecosystem, from mathematical foundations to applied products, ordered as a curriculum a beginner can actually follow, one stage at a time.</p>
+            <p data-i18n="g.i4">Read it top to bottom if you are just beginning; jump straight to your stage if you are already on the road. And if you get lost along the way, write to me. I answer.</p>
+          </div>
+
+          <div class="guide-path">
+            <h3 class="dept-head" data-i18n="g.curr">The Curriculum</h3>
+
+            <div class="stage">
+              <span class="stage-year" data-i18n="g.y1.year">Stage I</span>
+              <div class="stage-title" data-i18n="g.y1.title">The Foundations</div>
+              <p class="stage-what" data-i18n="g.y1.what">Mathematics, statistics, and computer science: the base on which everything above is built. Skip this layer and everything on top of it wobbles.</p>
+              <div class="stamps" data-i18n="g.y1.topics"><span class="stamp">Linear Algebra</span><span class="stamp">Calculus</span><span class="stamp">Probability &amp; Statistics</span><span class="stamp">Python</span><span class="stamp">Algorithms &amp; Data Structures</span><span class="stamp">Optimisation</span></div>
+              <p class="stage-train" data-i18n="g.y1.train"><strong>How to train:</strong> choose Python, solve small problems daily rather than weekly, and implement the mathematics you study. A gradient you have coded yourself is worth ten you have only read about.</p>
+            </div>
+
+            <div class="stage">
+              <span class="stage-year" data-i18n="g.y2.year">Stage II</span>
+              <div class="stage-title">Machine Learning</div>
+              <p class="stage-what" data-i18n="g.y2.what">The core craft: teaching machines to learn from data and, just as important, learning to tell when a model is lying to you.</p>
+              <div class="stamps" data-i18n="g.y2.topics"><span class="stamp">Supervised Learning</span><span class="stamp">Unsupervised Learning</span><span class="stamp">Reinforcement</span><span class="stamp">Generative Models</span><span class="stamp">Embeddings</span><span class="stamp">Feature Engineering</span><span class="stamp">Model Selection &amp; Evaluation</span></div>
+              <p class="stage-train" data-i18n="g.y2.train"><strong>How to train:</strong> take a public dataset and carry a prediction end to end (cleaning, features, model, honest evaluation). Then repeat with messier data. Kaggle and hackathons are the sparring grounds of this stage.</p>
+            </div>
+
+            <div class="stage">
+              <span class="stage-year" data-i18n="g.y3.year">Stage III</span>
+              <div class="stage-title">Deep Learning</div>
+              <p class="stage-what" data-i18n="g.y3.what">Artificial neural networks and the architectures behind modern AI, from the humble perceptron to the Transformers that power today's large language models.</p>
+              <div class="stamps" data-i18n="g.y3.topics"><span class="stamp">Neural Networks</span><span class="stamp">CNNs</span><span class="stamp">RNNs / LSTMs</span><span class="stamp">Transformers</span><span class="stamp">Large Language Models</span><span class="stamp">PyTorch</span></div>
+              <p class="stage-train" data-i18n="g.y3.train"><strong>How to train:</strong> build one small network from scratch, once; it is a rite of passage. Then use PyTorch for everything else: fine-tune something modest, break it, and understand precisely why it broke.</p>
+            </div>
+
+            <div class="stage">
+              <span class="stage-year" data-i18n="g.y4.year">Stage IV</span>
+              <div class="stage-title" data-i18n="g.y4.title">AI Engineering</div>
+              <p class="stage-what" data-i18n="g.y4.what">Where models meet reality: building, orchestrating, and operating AI systems that survive contact with real users. This layer is where my own daily work lives.</p>
+              <div class="stamps" data-i18n="g.y4.topics"><span class="stamp">Prompt Engineering</span><span class="stamp">RAG &amp; Semantic Search</span><span class="stamp">AI Agents</span><span class="stamp">Fine-tuning &amp; Adaptation</span><span class="stamp">Evaluation &amp; Guardrails</span><span class="stamp">LLMOps / MLOps</span><span class="stamp">Observability</span></div>
+              <p class="stage-train" data-i18n="g.y4.train"><strong>How to train:</strong> build a RAG chatbot over documents you genuinely care about, and add evaluation before you add features. Ship it to one real user and listen to what they say.</p>
+            </div>
+
+            <div class="stage">
+              <span class="stage-year" data-i18n="g.y5.year">Stage V</span>
+              <div class="stage-title" data-i18n="g.y5.title">Applied AI</div>
+              <p class="stage-what" data-i18n="g.y5.what">The outermost layer: solutions that produce value in the real world, such as automation, assistants, decision support, and AI products that people actually use.</p>
+              <div class="stamps" data-i18n="g.y5.topics"><span class="stamp">Process Automation</span><span class="stamp">Intelligent Assistants</span><span class="stamp">Analysis &amp; Decision-Making</span><span class="stamp">AI Products &amp; Services</span><span class="stamp">Customer Experience</span><span class="stamp">Innovation &amp; New Models</span></div>
+              <p class="stage-train" data-i18n="g.y5.train"><strong>How to train:</strong> find a repetitive problem inside a real business (there are thousands), automate it, and measure the hours saved. Impact is the final examination.</p>
+            </div>
+
+            <div class="stage">
+              <span class="stage-year" data-i18n="g.y6.year">Ongoing</span>
+              <div class="stage-title" data-i18n="g.y6.title">Enabling Infrastructure</div>
+              <p class="stage-what" data-i18n="g.y6.what">None of the layers stands alone. Beneath the whole ecosystem lies the infrastructure that carries it. Learn it gradually, exactly as your projects demand it.</p>
+              <div class="stamps" data-i18n="g.y6.topics"><span class="stamp">Cloud &amp; Multi-cloud</span><span class="stamp">GPUs / TPUs</span><span class="stamp">Storage &amp; Databases</span><span class="stamp">APIs &amp; Services</span><span class="stamp">Queues &amp; Streaming</span><span class="stamp">Networks &amp; Security</span><span class="stamp">CI/CD &amp; DevOps</span></div>
+              <p class="stage-train" data-i18n="g.y6.train"><strong>How to train:</strong> deploy every project you build, however small. A model in a notebook is a rumour; a model behind an API is a fact.</p>
+            </div>
+
+            <h3 class="dept-head" data-i18n="g.virt">Six Principles for the Journey</h3>
+            <div class="briefs-grid">
+              <div class="brief">
+                <div class="brief-title" data-i18n="gv1.t">Foundation</div>
+                <p data-i18n="gv1.p">Mathematical and computational knowledge. The deeper the roots, the taller the tower you may build upon them.</p>
+              </div>
+              <div class="brief">
+                <div class="brief-title" data-i18n="gv2.t">Capability</div>
+                <p data-i18n="gv2.p">The ability to build and operate AI systems, earned by building, never by watching others build.</p>
+              </div>
+              <div class="brief">
+                <div class="brief-title" data-i18n="gv3.t">Data</div>
+                <p data-i18n="gv3.p">Quality, management, and governance. A model is only as honest as the data it was raised on.</p>
+              </div>
+              <div class="brief">
+                <div class="brief-title" data-i18n="gv4.t">Trust</div>
+                <p data-i18n="gv4.p">Security, ethics, privacy, and compliance. Power without care causes real harm; build responsibly.</p>
+              </div>
+              <div class="brief">
+                <div class="brief-title" data-i18n="gv5.t">Scalability</div>
+                <p data-i18n="gv5.p">Infrastructure, cost, and performance. What works for one must be made to work for many.</p>
+              </div>
+              <div class="brief">
+                <div class="brief-title" data-i18n="gv6.t">Impact</div>
+                <p data-i18n="gv6.p">Efficiency and transformation. The true measure of the craft is what it changes in the world.</p>
+              </div>
+            </div>
+
+            <h3 class="dept-head" data-i18n="g.help">Need a Hand Getting Started?</h3>
+            <div class="guide-cta">
+              <p data-i18n="g.ctap">I remember precisely how confusing day one is: every door looks locked, and every book assumes you have read every other book. If you are starting out and don't know where to put your feet, write to me. I will gladly help you find your Stage I. <a href="mailto:gabriel.guyma@gmail.com">E-mail</a> · <a href="https://www.linkedin.com/in/gabriel-guimaraes-a37b43268" target="_blank">LinkedIn</a></p>
+            </div>
+          </div>
+        </article>
+      </div>
+
       <!-- ═══ CERTIFICATIONS ═══ -->
       <div class="page" id="page-certs">
         <article class="lead-story">
@@ -1264,6 +1434,7 @@
     'nav.about': `Sobre o Autor`,
     'nav.projects': `Obras Notáveis`,
     'nav.writings': `Escritos`,
+    'nav.guide': `Aprenda IA`,
     'nav.certs': `Honrarias`,
     'nav.skills': `Grimório`,
 
@@ -1302,6 +1473,8 @@
     'd4.m': `2025 · Conquista — leia a matéria ›`,
     'd0.t': `Aprovado na bolsa de pesquisa PIBITI — projeto Vigia-Dengue`,
     'd0.m': `Jul 2026 · Pesquisa — leia a matéria ›`,
+    'dg.t': `Publicado o guia prático para começar em IA nesta edição`,
+    'dg.m': `Jul 2026 · A Imprensa — leia ›`,
 
     'n.kicker': `Extra! Extra! · Reportagem Especial`,
     'n.head': `Bruxo Local Conquista o Primeiro Lugar<br>no Hackathon de Big Data`,
@@ -1400,6 +1573,59 @@
     'w2.desc': `Desenvolvimento e avaliação do Vigia-Dengue: ferramenta digital de alerta precoce para estratificação espaço-temporal do risco de dengue em municípios de um estado brasileiro — no âmbito do PIBITI, programa institucional de iniciação em desenvolvimento tecnológico e inovação.`,
     'w2.s1': `Saúde Pública`,
     'w2.s2': `Alerta Precoce`,
+
+    'g.kicker': `Suplemento Educacional Especial`,
+    'g.head': `Guia Prático para Começar em Inteligência Artificial`,
+    'g.sub': `Por onde começar, para onde ir e como treinar: o território inteiro, mapeado`,
+    'g.byline': `O caminho que percorri e o mapa que eu gostaria de ter recebido, por G. Guimarães`,
+    'g.i1': `Não comecei com nenhuma vantagem especial. Em 2023, entre as aulas de engenharia, comecei a trabalhar na Outlier AI treinando e avaliando grandes modelos de linguagem, e descobri que o caminho mais rápido para dentro da IA é trabalhar perto dela todos os dias, mesmo que pelas beiradas. Ninguém manda convite. Você simplesmente começa.`,
+    'g.i2': `Dali em diante, o caminho foi pouco glamoroso e muito eficaz: cursos gratuitos (CS50 de Introdução à IA, AI Essentials do Google, cursos intensivos de Python), pequenos projetos publicados abertamente no GitHub, um hackathon vencido com um pipeline de ponta a ponta, um dataset publicado com DOI e, com o tempo, trabalho de engenharia de IA na segurança pública e uma bolsa de pesquisa. Cada passo foi pequeno. A soma, não.`,
+    'g.i3': `O que segue é o mapa que eu gostaria que alguém tivesse me entregado no primeiro dia: o ecossistema moderno da IA, dos fundamentos matemáticos aos produtos aplicados, organizado como um currículo que um iniciante pode de fato seguir, uma etapa de cada vez.`,
+    'g.i4': `Leia de cima a baixo se está começando agora; pule direto para a sua etapa se já está na estrada. E, se por acaso se perder no caminho, me escreva. Eu respondo.`,
+    'g.curr': `O Currículo`,
+    'g.y1.year': `Etapa I`,
+    'g.y1.title': `Os Fundamentos`,
+    'g.y1.what': `Matemática, estatística e ciência da computação: a base sobre a qual tudo acima é construído. Pule esta camada e tudo que for construído em cima dela balança.`,
+    'g.y1.topics': `<span class="stamp">Álgebra Linear</span><span class="stamp">Cálculo</span><span class="stamp">Probabilidade &amp; Estatística</span><span class="stamp">Python</span><span class="stamp">Algoritmos &amp; Estruturas de Dados</span><span class="stamp">Otimização</span>`,
+    'g.y1.train': `<strong>Como treinar:</strong> escolha Python, resolva problemas pequenos todos os dias (não toda semana) e implemente a matemática que estudar. Um gradiente que você mesmo programou vale por dez que você apenas leu.`,
+    'g.y2.year': `Etapa II`,
+    'g.y2.what': `O ofício central: ensinar máquinas a aprender com dados e, tão importante quanto, aprender a perceber quando um modelo está mentindo para você.`,
+    'g.y2.topics': `<span class="stamp">Supervisionado</span><span class="stamp">Não Supervisionado</span><span class="stamp">Reforço</span><span class="stamp">Modelos Generativos</span><span class="stamp">Embeddings</span><span class="stamp">Feature Engineering</span><span class="stamp">Seleção &amp; Avaliação de Modelos</span>`,
+    'g.y2.train': `<strong>Como treinar:</strong> pegue um dataset público e leve uma previsão de ponta a ponta (limpeza, features, modelo, avaliação honesta). Depois repita com dados mais bagunçados. Kaggle e hackathons são os campos de treino desta etapa.`,
+    'g.y3.year': `Etapa III`,
+    'g.y3.what': `Redes neurais artificiais e as arquiteturas por trás da IA moderna, do humilde perceptron aos Transformers que movem os grandes modelos de linguagem de hoje.`,
+    'g.y3.topics': `<span class="stamp">Redes Neurais</span><span class="stamp">CNNs</span><span class="stamp">RNNs / LSTMs</span><span class="stamp">Transformers</span><span class="stamp">Large Language Models</span><span class="stamp">PyTorch</span>`,
+    'g.y3.train': `<strong>Como treinar:</strong> construa uma rede pequena do zero, uma vez; é um rito de passagem. Depois use PyTorch para todo o resto: faça fine-tuning de algo modesto, quebre e entenda exatamente por que quebrou.`,
+    'g.y4.year': `Etapa IV`,
+    'g.y4.title': `Engenharia de IA`,
+    'g.y4.what': `Onde os modelos encontram a realidade: construir, orquestrar e operar sistemas de IA que sobrevivem ao contato com usuários reais. É nesta camada que vive o meu trabalho diário.`,
+    'g.y4.topics': `<span class="stamp">Prompt Engineering</span><span class="stamp">RAG &amp; Busca Semântica</span><span class="stamp">Agentes de IA</span><span class="stamp">Fine-tuning &amp; Adaptação</span><span class="stamp">Avaliação &amp; Guardrails</span><span class="stamp">LLMOps / MLOps</span><span class="stamp">Observabilidade</span>`,
+    'g.y4.train': `<strong>Como treinar:</strong> construa um chatbot com RAG sobre documentos que realmente importem para você, e adicione avaliação antes de adicionar funcionalidades. Entregue a um usuário real e escute o que ele diz.`,
+    'g.y5.year': `Etapa V`,
+    'g.y5.title': `IA Aplicada`,
+    'g.y5.what': `A camada mais externa: soluções que geram valor no mundo real, como automação, assistentes, apoio à decisão e produtos de IA que as pessoas de fato usam.`,
+    'g.y5.topics': `<span class="stamp">Automação de Processos</span><span class="stamp">Assistentes Inteligentes</span><span class="stamp">Análise &amp; Tomada de Decisão</span><span class="stamp">Produtos &amp; Serviços de IA</span><span class="stamp">Experiência do Cliente</span><span class="stamp">Inovação &amp; Novos Modelos</span>`,
+    'g.y5.train': `<strong>Como treinar:</strong> encontre um problema repetitivo dentro de um negócio real (existem milhares), automatize-o e meça as horas economizadas. Impacto é o exame final.`,
+    'g.y6.year': `Contínua`,
+    'g.y6.title': `Infraestrutura Habilitadora`,
+    'g.y6.what': `Nenhuma das camadas se sustenta sozinha. Sob todo o ecossistema vive a infraestrutura que o carrega. Aprenda gradualmente, exatamente conforme seus projetos exigirem.`,
+    'g.y6.topics': `<span class="stamp">Cloud &amp; Multi-cloud</span><span class="stamp">GPUs / TPUs</span><span class="stamp">Armazenamento &amp; Bancos de Dados</span><span class="stamp">APIs &amp; Serviços</span><span class="stamp">Filas &amp; Streaming</span><span class="stamp">Redes &amp; Segurança</span><span class="stamp">CI/CD &amp; DevOps</span>`,
+    'g.y6.train': `<strong>Como treinar:</strong> faça deploy de todo projeto que construir, por menor que seja. Um modelo num notebook é um boato; um modelo atrás de uma API é um fato.`,
+    'g.virt': `Seis Princípios para a Jornada`,
+    'gv1.t': `Fundamento`,
+    'gv1.p': `Conhecimento matemático e computacional. Quanto mais profundas as raízes, mais alta a torre que se pode erguer sobre elas.`,
+    'gv2.t': `Capacidade`,
+    'gv2.p': `A habilidade de construir e operar sistemas de IA, conquistada construindo, nunca assistindo os outros construírem.`,
+    'gv3.t': `Dados`,
+    'gv3.p': `Qualidade, gestão e governança. Um modelo é tão honesto quanto os dados com que foi criado.`,
+    'gv4.t': `Confiança`,
+    'gv4.p': `Segurança, ética, privacidade e conformidade. Poder sem cuidado causa dano real; construa com responsabilidade.`,
+    'gv5.t': `Escalabilidade`,
+    'gv5.p': `Infraestrutura, custo e performance. O que funciona para um precisa ser feito funcionar para muitos.`,
+    'gv6.t': `Resultado`,
+    'gv6.p': `Eficiência e transformação. A verdadeira medida do ofício é o que ele muda no mundo.`,
+    'g.help': `Precisa de Ajuda para Começar?`,
+    'g.ctap': `Eu lembro exatamente do quanto o primeiro dia é confuso: toda porta parece trancada, e todo livro assume que você já leu todos os outros livros. Se está começando e não sabe onde pisar, me escreva. Ajudo com prazer a encontrar a sua Etapa I. <a href="mailto:gabriel.guyma@gmail.com">E-mail</a> · <a href="https://www.linkedin.com/in/gabriel-guimaraes-a37b43268" target="_blank">LinkedIn</a>`,
 
     'ce.kicker': `Honras &amp; Distinções`,
     'ce.head': `Honrarias &amp; Credenciais`,
