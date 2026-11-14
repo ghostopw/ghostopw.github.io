@@ -405,6 +405,13 @@
     position: absolute; inset: 0; pointer-events: none;
     box-shadow: inset 0 0 45px rgba(35,22,8,0.6);
   }
+  .frame-inner.full-photo { aspect-ratio: 1599 / 899; }
+  .frame-inner.full-photo img { animation-name: kenburns-soft; }
+  @keyframes kenburns-soft {
+    0%   { transform: scale(1.02) translate(0, 0); }
+    50%  { transform: scale(1.06) translate(-1.2%, -0.8%); }
+    100% { transform: scale(1.03) translate(1%, 0.6%); }
+  }
   figcaption {
     font-family: 'IM Fell English', serif;
     font-style: italic;
@@ -761,7 +768,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .frame-inner img, .grain, .page { animation: none; }
+    .frame-inner img, .frame-inner.full-photo img, .grain, .page { animation: none; }
   }
 </style>
 </head>
@@ -858,8 +865,8 @@
             <aside class="col-side">
               <figure class="portrait">
                 <div class="frame">
-                  <div class="frame-inner">
-                    <img src="profile.png" alt="Gabriel Guimarães">
+                  <div class="frame-inner full-photo">
+                    <img src="profile.jpg" alt="Gabriel Guimarães">
                     <span class="grain"></span>
                     <span class="vignette"></span>
                   </div>
